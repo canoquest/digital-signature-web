@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="http://java.sun.com/jsf/html"
+ 	   			xmlns:f="http://java.sun.com/jsf/core"
+ 	   			xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	   			xmlns:p="http://primefaces.org/ui"
+ 	   			template="/application/templates/baseTemplate.xhtml">
+
+	<ui:define name="pageStyles">
+		<link rel="stylesheet" type="text/css" href="../../../application/styles/moduleStyle/documentSignatureStyle.css" />
+	</ui:define>
+
+	<ui:define name="pageContent">
+	
+		<h:form id="homeForm" enctype="multipart/form-data">		
+						
+			<div class="line" align="center">
+			
+				<div class="formUser" align="center">					
+					
+					<p:fieldset>
+						<p:outputPanel layout="block" styleClass="line">
+							<p:outputPanel layout="block" styleClass="columnFormLabel">
+								<h:outputText value="Nome: " />				
+							</p:outputPanel>
+							<p:outputPanel layout="block" styleClass="columnFormInput">
+								<p:inputText value="#{digitalSignatureProccessMBean.userDTO.name}" />
+							</p:outputPanel>
+						</p:outputPanel>
+						
+						<p:outputPanel layout="block" styleClass="line">
+							<p:outputPanel layout="block" styleClass="columnFormLabel">
+								<h:outputText value="Valor: " />				
+							</p:outputPanel>
+							<p:outputPanel layout="block" styleClass="columnFormInput">
+								<p:inputText value="#{digitalSignatureProccessMBean.userDTO.price}" />
+							</p:outputPanel>
+						</p:outputPanel>
+						
+						<p:outputPanel layout="block" styleClass="line">
+							<p:outputPanel layout="block" styleClass="columnFormLabel">
+								<h:outputText value="Parcelas: " />				
+							</p:outputPanel>
+							<p:outputPanel layout="block" styleClass="columnFormInput">
+								<p:inputText value="#{digitalSignatureProccessMBean.userDTO.installmentsNumber}" />
+							</p:outputPanel>
+						</p:outputPanel>
+						
+						<div class="line" align="left">
+							<p:fileUpload value="#{digitalSignatureProccessMBean.userDTO.userSignature}" fileUploadListener="#{digitalSignatureProccessMBean.handleFileUpload}" label="Assinatura" skinSimple="true" mode="simple" />
+						</div>
+						
+						<div class="line" align="left">
+							<p:fileUpload value="#{digitalSignatureProccessMBean.userDTO.document}" fileUploadListener="#{digitalSignatureProccessMBean.handleFileUpload}" label="Documento" skinSimple="true" mode="simple" />
+						</div>
+						
+						<p:outputPanel layout="block" styleClass="line" style="padding-top: 20px;">
+							<p:commandButton value="Avançar" ajax="false" action="#{digitalSignatureProccessMBean.viewUserValues}" />
+						</p:outputPanel>
+					
+					</p:fieldset>	
+				
+				</div>
+			
+			</div>					
+			
+		</h:form>
+	
+	</ui:define>
+
+</ui:composition>

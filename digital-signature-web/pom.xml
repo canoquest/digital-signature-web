@@ -1,0 +1,195 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  		 
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.unicred.digitalsignature</groupId>
+	<artifactId>digital-signature-web</artifactId>
+	<packaging>war</packaging>
+	<version>1.0</version>
+	<name>digital-signature-web Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	
+	<repositories>
+        <repository>  
+            <id>prime-repo</id>  
+            <name>PrimeFaces Maven Repository</name>  
+            <url>http://repository.primefaces.org</url>  
+            <layout>default</layout>  
+        </repository>
+    </repositories>
+	
+	<dependencies>	
+		 
+		<!-- 
+		<dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-7.0</artifactId>
+			<version>1.1.1.Final</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+		 --> 
+		
+		<!-- Java EE Specification Dependencie -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>8.0</version>
+			<scope>provided</scope>
+		</dependency>	
+		
+		<dependency>
+		    <groupId>org.jboss.resteasy</groupId>
+		    <artifactId>resteasy-jaxrs</artifactId>
+		    <version>3.6.2.Final</version>
+		</dependency>	
+		
+		<!-- Begin JSF Dependencies -->
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.2.18</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.sun.faces</groupId>
+		    <artifactId>jsf-impl</artifactId>
+		    <version>2.2.18</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>javax.el</groupId>
+		    <artifactId>javax.el-api</artifactId>
+		    <version>2.2.1</version>		    
+		</dependency>
+		
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>3.0.1</version>		    
+		</dependency>
+		
+		<dependency>
+		    <groupId>javax.servlet.jsp</groupId>
+		    <artifactId>javax.servlet.jsp-api</artifactId>
+		    <version>2.2.1</version>		    
+		</dependency>
+		
+		<dependency>
+		    <groupId>javax.servlet.jsp.jstl</groupId>
+		    <artifactId>jstl-api</artifactId>
+		    <version>1.2</version>		    
+		</dependency>
+		<!-- End JSF Dependencies -->	
+		
+		<!-- Begin PrimeFaces Dependencies -->
+		<dependency>
+		    <groupId>org.primefaces</groupId>
+		    <artifactId>primefaces</artifactId>
+		    <version>6.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+		
+			<!-- Begin PrimeFaces Optional Dependencies  -->
+			<dependency>
+			    <groupId>com.lowagie</groupId>
+			    <artifactId>itext</artifactId>
+			    <version>2.1.7</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>org.apache.poi</groupId>
+			    <artifactId>poi</artifactId>
+			    <version>3.13</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>commons-codec</groupId>
+			    <artifactId>commons-codec</artifactId>
+			    <version>1.9</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>commons-logging</groupId>
+			    <artifactId>commons-logging</artifactId>
+			    <version>1.1.3</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>log4j</groupId>
+			    <artifactId>log4j</artifactId>
+			    <version>1.2.17</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>commons-fileupload</groupId>
+			    <artifactId>commons-fileupload</artifactId>
+			    <version>1.3</version>
+			</dependency>
+			
+			<dependency>
+			    <groupId>commons-io</groupId>
+			    <artifactId>commons-io</artifactId>
+			    <version>2.2</version>
+			</dependency>
+			<!-- End PrimeFaces Optional Dependencies  -->
+		<!-- End PrimeFaces Dependencies -->
+		
+		<!-- Google GSON Dependencie -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
+		
+		<!-- Begin Log4J Dependencie -->
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-api</artifactId>
+		    <version>2.11.1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-core</artifactId>
+		    <version>2.11.1</version>
+		</dependency>
+		<!-- End Log4J Dependencie -->
+		
+	</dependencies>
+
+	<build>
+		<finalName>digital-signature-web</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.2</version>
+				<configuration>	
+					<warName>digital-signature-web</warName>							
+					<outputDirectory>C:\Dev-UBR\Server\JBoss\wildfly-14.0.0.Final\standalone\deployments</outputDirectory>													
+				</configuration>
+			</plugin>   
+			
+			<!-- 
+			<plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <version>3.1</version>
+	            <configuration>
+	                http://maven.apache.org/plugins/maven-compiler-plugin/
+	                <source>1.8</source>
+	                <target>1.8</target>
+	            </configuration>
+        	</plugin>
+        	 -->
+		</plugins>
+	</build>
+
+</project>

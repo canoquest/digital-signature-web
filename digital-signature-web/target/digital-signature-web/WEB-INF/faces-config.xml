@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+			  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+			  version="2.0">
+			
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		
+		<navigation-case>
+			<display-name>Navegação para o formulário de usuário</display-name>
+			<from-outcome>novo_documento</from-outcome>
+			<to-view-id>application/modules/documentSignature/userForm.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		
+		<navigation-case>
+			<display-name>Navegação para a tela de exibição das informações do usuário</display-name>
+			<from-outcome>exibe_informacoes_usuario</from-outcome>
+			<to-view-id>application/modules/documentSignature/viewUserValues.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		
+		<navigation-case>
+			<display-name>Navegação para a tela de seleção do fornecedor</display-name>
+			<from-outcome>seleciona_fornecedor</from-outcome>
+			<to-view-id>application/modules/documentSignature/providerSelect.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		
+		<navigation-case>
+			<display-name>
+				Navegação para a tela de exibição do documento assinado pelo usuário, bem como os atributos de segurança 
+				oferecidos pelo fornecedor selecionado anteriormente. 
+			</display-name>
+			<from-outcome>signed_document_by_user</from-outcome>
+			<to-view-id>application/modules/documentSignature/signedDocumentByUser.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		
+		<navigation-case>
+			<display-name>
+				Navegação para a tela de exibição da listagem de documentos assinados.
+			</display-name>
+			<from-outcome>list_signed_documents</from-outcome>
+			<to-view-id>application/modules/documentSignature/signedDocumentList.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>	
+			
+	</navigation-rule>	
+		
+</faces-config>

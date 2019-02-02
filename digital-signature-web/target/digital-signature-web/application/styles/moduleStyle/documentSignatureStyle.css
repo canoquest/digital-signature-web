@@ -1,0 +1,26 @@
+.buttonNew {
+	float: right;
+	margin-bottom: 10px;
+}
+
+.formUser {
+	width: 60%;
+}
+
+.messageUserValues {
+	font-family: sans-serif;
+	font-size: 18px;
+	font-weight: bolder;
+	color: #000000;
+}
+
+.userValues {
+	font-family: sans-serif;
+	font-size: 18px;
+	font-weight: bolder;
+	color: #FF0000;
+}
+
+.providerSelectBox {	
+	margin: 20px 0px 30px 0px;
+}

@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="http://java.sun.com/jsf/html"
+ 	   			xmlns:f="http://java.sun.com/jsf/core"
+ 	   			xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	   			xmlns:p="http://primefaces.org/ui"
+ 	   			template="/application/templates/baseTemplate.xhtml">
+
+	<ui:define name="pageStyles">
+		<link rel="stylesheet" type="text/css" href="../../../application/styles/moduleStyle/documentSignatureStyle.css" />
+	</ui:define>
+
+	<ui:define name="pageContent">
+	
+		<h:form id="homeForm" enctype="multipart/form-data">		
+						
+			<div class="line" align="center">
+			
+				<div class="formUser" align="center">					
+					
+					<p:fieldset>
+					
+						<p:selectOneRadio value="#{digitalSignatureProccessMBean.providerMBean.provider}" layout="grid" columns="1" styleClass="providerSelectBox">
+							<f:selectItem itemLabel="DocuSign" itemValue="DocuSign" />
+							<f:selectItem itemLabel="D4Sign" itemValue="D4Sign" />
+							<f:selectItem itemLabel="AdobeSign" itemValue="AdobeSign" />
+							<f:selectItem itemLabel="Autentique" itemValue="Autentique" />
+							<f:selectItem itemLabel="SignNow" itemValue="SignNow" />
+							<p:ajax event="click" listener="#{digitalSignatureProccessMBean.handleClick}" />
+						</p:selectOneRadio>						
+						
+						<p:outputPanel layout="block" styleClass="line" style="margin-bottom: 20px;">
+							<p:commandButton value="Avançar" ajax="false" action="#{digitalSignatureProccessMBean.signDocument}" />						
+						</p:outputPanel>
+					
+					</p:fieldset>	
+				
+				</div>
+			
+			</div>					
+			
+		</h:form>
+	
+	</ui:define>
+
+</ui:composition>

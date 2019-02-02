@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="http://java.sun.com/jsf/html"
+ 	   			xmlns:f="http://java.sun.com/jsf/core"
+ 	   			xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	   			xmlns:p="http://primefaces.org/ui"
+ 	   			template="/application/templates/baseTemplate.xhtml">
+
+	<ui:define name="pageStyles">
+		<link rel="stylesheet" type="text/css" href="../../../application/styles/moduleStyle/documentSignatureStyle.css" />
+	</ui:define>
+
+	<ui:define name="pageContent">
+	
+		<h:form id="homeForm">
+			
+			<p:fieldset>
+			
+				<p:outputPanel layout="block" styleClass="line">
+					<p:commandButton value="Novo" action="#{digitalSignatureProccessMBean.newDocument}" styleClass="buttonNew">
+						<f:setPropertyActionListener value="Carlos Costa" target="#{digitalSignatureProccessMBean.userDTO.name}" />
+						<f:setPropertyActionListener value="10" target="#{digitalSignatureProccessMBean.userDTO.installmentsNumber}" />
+					</p:commandButton>			
+				</p:outputPanel>
+							
+				<p:outputPanel layout="block" styleClass="line">
+					<p:dataTable id="listSignedDocument" value="#{documentMBean.listSignedDocumentDTO}" var="document">
+					
+						<p:column headerText="Documento - Fornecedor">
+							<h:outputText value="#{document.documentProvider}" />
+						</p:column>					
+						
+						<p:column headerText="Data">
+							<h:outputText value="#{document.signatureDate}">
+								<f:convertDateTime pattern="dd/MM/YYYY" />
+							</h:outputText>
+						</p:column>
+					
+					</p:dataTable>			
+				</p:outputPanel>
+			
+			</p:fieldset>
+				
+			
+			
+		</h:form>
+	
+	</ui:define>
+
+</ui:composition>

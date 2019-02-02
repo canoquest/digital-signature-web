@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+ 	   xmlns:h="http://java.sun.com/jsf/html"
+ 	   xmlns:f="http://java.sun.com/jsf/core"
+ 	   xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	   xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<title>
+			<ui:insert name="title" />
+		</title>
+		<link rel="stylesheet" type="text/css" href="../../../application/styles/baseStyle.css" />
+		<link rel="stylesheet" type="text/css" href="../../../application/styles/customFrameworkStyle/customPrimeFacesStyle.css" />
+		<ui:insert name="pageStyles" />
+		<ui:insert name="pageScripts" />
+	</h:head>
+	
+	<h:body>		
+		
+		<div class="pageWindown" align="center">			
+			
+			<div class="pageBody" align="center">						
+									
+				<div class="pageContent" align="center">
+				
+					<div class="content" align="left">
+						<br/><br/>
+						<ui:insert name="pageContent" />
+					</div>
+										
+				</div>
+				
+			</div>
+		
+		</div>		
+		
+	</h:body>
+
+</html>

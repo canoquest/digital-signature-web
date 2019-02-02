@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:h="http://java.sun.com/jsf/html"
+ 	   			xmlns:f="http://java.sun.com/jsf/core"
+ 	   			xmlns:ui="http://java.sun.com/jsf/facelets"
+ 	   			xmlns:p="http://primefaces.org/ui"
+ 	   			template="/application/templates/baseTemplate.xhtml">
+
+	<ui:define name="pageStyles">
+		<link rel="stylesheet" type="text/css" href="../../../application/styles/moduleStyle/documentSignatureStyle.css" />
+	</ui:define>
+
+	<ui:define name="pageContent">
+	
+		<h:form id="homeForm" enctype="multipart/form-data">
+					
+			<p:fieldset>
+			
+				<div class="line" align="center" style="padding-top: 120px;">
+				
+					<p:outputPanel layout="block" styleClass="line">
+						<h:outputText value="Sr.(a) " styleClass="messageUserValues" />
+						<h:outputText value="#{digitalSignatureProccessMBean.userDTO.name}" styleClass="userValues" />
+						<h:outputText value=" solicitou o valor de " styleClass="messageUserValues" />		
+						<h:outputText value="#{digitalSignatureProccessMBean.userDTO.price}" styleClass="userValues">
+							<f:convertNumber maxFractionDigits="2" type="currency" />
+						</h:outputText>			
+					</p:outputPanel>
+					
+					<p:outputPanel layout="block" styleClass="line">
+						<h:outputText value="para parcelar em " styleClass="messageUserValues" />
+						<h:outputText value="#{digitalSignatureProccessMBean.userDTO.installmentsNumber}" styleClass="userValues" />
+						<h:outputText value=" parcelas." styleClass="messageUserValues" />								
+					</p:outputPanel>	
+					
+					<p:outputPanel layout="block" styleClass="line">
+						<p:separator style="width:500px; height:1px; border: 0px solid black; background: black; margin-top: 200px;" />
+					</p:outputPanel>
+					
+					<p:outputPanel layout="block" styleClass="line" style="margin-bottom: 50px;">
+						<h:outputText value="Assinatura" styleClass="messageUserValues" />
+					</p:outputPanel>			
+				
+				</div>	
+				
+				<div class="line" align="center" style="margin-top: 30px;">
+					<p:commandButton value="Avançar" action="#{digitalSignatureProccessMBean.selectProvider}" />
+				</div>					
+			
+			</p:fieldset>						
+			
+		</h:form>
+	
+	</ui:define>
+
+</ui:composition>
