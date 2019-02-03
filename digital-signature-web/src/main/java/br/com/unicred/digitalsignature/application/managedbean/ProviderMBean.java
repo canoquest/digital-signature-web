@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import br.com.unicred.api.client.service.APIService;
+import br.com.unicred.digitalsignature.application.enumeration.ProviderEnum;
 import br.com.unicred.digitalsignature.application.enumeration.UrlFinishedEnum;
 import br.com.unicred.digitalsignature.application.model.dto.UserDTO;
 import br.com.unicred.digitalsignature.core.managedbean.CoreMBean;
@@ -48,6 +49,20 @@ public class ProviderMBean extends CoreMBean implements Serializable {
 		byte[] file = userDTO.getDocument().getContents();	
 		String fileName = userDTO.getDocument().getFileName();		
 		String documentBase64 = new String(Base64.getEncoder().encode(file));
+		
+		if (provider != null && !provider.isEmpty()) {
+			if (provider.equals(ProviderEnum.DOCUSIGN.getValue())) {
+				
+			} else if (provider.equals(ProviderEnum.D4SIGN.getValue())) {
+				
+			} else if (provider.equals(ProviderEnum.AUTENTIQUE.getValue())) {
+				
+			} else if (provider.equals(ProviderEnum.ADOBESIGN.getValue())) {
+			
+			} else if (provider.equals(ProviderEnum.SIGNNOW.getValue())) {
+				
+			}
+		}
 		
 		APIService documentService = new APIService();		
 		documentService.sendDocument(documentBase64, file, fileName);

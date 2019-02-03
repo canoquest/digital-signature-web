@@ -1,15 +1,16 @@
-package br.com.unicred.rest.core.builder;
+package br.com.unicred.d4sign.client.builder;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import br.com.unicred.d4sign.client.enumeration.D4SignParameterEnum;
 import br.com.unicred.rest.core.enumeration.APIParameterEnum;
 
-public class ParametersAPIBuilder {
+public class D4SignParametersBuilder {
 	
 	protected Map<String, Object> parameters;
 	
-	public ParametersAPIBuilder() {
+	public D4SignParametersBuilder() {
 		super();
 	}
 	
@@ -20,8 +21,8 @@ public class ParametersAPIBuilder {
 	
 	private void authenticationParameters() {
 		createParameters();
-		parameters.put(APIParameterEnum.TOKEN_API.getKey(), APIParameterEnum.TOKEN_API.getValue());
-		parameters.put(APIParameterEnum.CRYPT_KEY.getKey(), APIParameterEnum.CRYPT_KEY.getValue());		
+		parameters.put(D4SignParameterEnum.TOKEN_API.getKey(), D4SignParameterEnum.TOKEN_API.getValue());
+		parameters.put(D4SignParameterEnum.CRYPT_KEY.getKey(), D4SignParameterEnum.CRYPT_KEY.getValue());		
 	}
 	
 	private Boolean emptyParameters() {

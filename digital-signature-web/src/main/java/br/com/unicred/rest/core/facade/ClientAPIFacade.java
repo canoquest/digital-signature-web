@@ -1,6 +1,5 @@
 package br.com.unicred.rest.core.facade;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.ws.rs.core.Response;
@@ -8,15 +7,12 @@ import javax.ws.rs.core.Response;
 import org.apache.log4j.Logger;
 
 import br.com.unicred.rest.core.adapter.APIJsonAdapter;
-import br.com.unicred.rest.core.api.ConfigureAPI;
 import br.com.unicred.rest.core.builder.APIClientBuilder;
 import br.com.unicred.rest.core.exception.APIClientException;
 
 public class ClientAPIFacade {
 	
 	private static final Logger LOGGER = Logger.getLogger(ClientAPIFacade.class);
-	
-	private Map<String, Object> parametersConfiguration;
 	
 	private String host;
 	
@@ -28,25 +24,10 @@ public class ClientAPIFacade {
 		super();
 		this.host = host;
 		this.path = path;
-		this.contentType = contentType;
-		initializate();
-	}
+		this.contentType = contentType;		
+	}	
 	
-	private void initializate() {
-		ConfigureAPI configureAPI = new ConfigureAPI();
-		parametersConfiguration = configureAPI.createParameters();		 
-	}
-	
-	private void addParametersConfiguration(Map<String, Object> parameters) {
-		if (parameters == null) {
-			parameters = new HashMap<String, Object>(); 
-		}
-		parameters.putAll(parametersConfiguration);
-	}
-	
-	public Object get(Map<String, Object> parameters, Class<?> classe) throws APIClientException {
-		addParametersConfiguration(parameters);
-		
+	public Object get(Map<String, Object> parameters, Class<?> classe) throws APIClientException {		
 		APIClientBuilder apiClientBuilder = new APIClientBuilder(host, path, contentType, parameters);		
 		
 		Response response = apiClientBuilder.get();
@@ -57,9 +38,7 @@ public class ClientAPIFacade {
 		return objectResponse;
 	}
 	
-	public Object post(Object objectRequest, Map<String, Object> parameters, Class<?> classe) throws APIClientException {
-		addParametersConfiguration(parameters);
-		
+	public Object post(Object objectRequest, Map<String, Object> parameters, Class<?> classe) throws APIClientException {		
 		final String body = APIJsonAdapter
 				.adapterFromObjectToJson(objectRequest);
 		

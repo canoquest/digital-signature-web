@@ -13,7 +13,7 @@ import br.com.unicred.rest.core.facade.ClientAPIFacade;
 
 public class DocumentFacade {
 	
-	private static final String HOST = ConfigureAPIEnum.API_HOST.getValue();
+	private static final String HOST = APIPathEnum.HOST.getValue();
 	
 	private static final String APPLICATION_JSON = ConfigureAPIEnum.APPLICATION_JSON.getValue();
 
