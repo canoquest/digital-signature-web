@@ -67,6 +67,12 @@ public class DigitalSignatureProccessMBean extends CoreMBean implements Serializ
 	}
 	
 	public void handleClick() {
+		byte[] documentFile = userDTO.getDocument().getContents();
+		byte[] signatureFile = userDTO.getDocument().getContents();
+		
+		LOGGER.info("Documento: " + userDTO.getDocument().getFileName());
+		LOGGER.info("Documento: " + userDTO.getUserSignature().getFileName());
+		
 		LOGGER.info("Item Selecionado: " + providerMBean.getProvider());		
 	}
 	
