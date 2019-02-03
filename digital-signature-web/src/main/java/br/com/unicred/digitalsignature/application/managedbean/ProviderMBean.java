@@ -49,13 +49,14 @@ public class ProviderMBean extends CoreMBean implements Serializable {
 		byte[] fileByteArray = userDTO.getDocument().getContents();	
 		String fileName = userDTO.getDocument().getFileName();		
 		String fileBase64 = new String(Base64.getEncoder().encode(fileByteArray));
+		String email = "carlos.costa@zallpy.com";
 		
 		if (provider != null && !provider.isEmpty()) {
 			if (provider.equals(ProviderEnum.DOCUSIGN.getValue())) {
 				
 			} else if (provider.equals(ProviderEnum.D4SIGN.getValue())) {
 				D4SignService d4SignService = new D4SignService();
-				d4SignService.uploadFileBinary(fileBase64, fileByteArray, fileName);
+				d4SignService.processDocumentSignature(fileBase64, fileByteArray, fileName, email);
 			} else if (provider.equals(ProviderEnum.AUTENTIQUE.getValue())) {
 				
 			} else if (provider.equals(ProviderEnum.ADOBESIGN.getValue())) {

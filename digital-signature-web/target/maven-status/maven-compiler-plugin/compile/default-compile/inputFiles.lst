@@ -10,7 +10,9 @@ C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-we
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\facade\D4SignFacade.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\model\request\WebhookRequest.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\rest\core\enumeration\APIClientParameterEnum.java
+C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\facade\SignatoryFacade.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\core\exception\ViewValidationException.java
+C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\core\model\dto\ProcessSignatureDTO.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\application\model\dto\UserDTO.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\application\managedbean\DocumentMBean.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\facade\DocumentFacade.java

@@ -5,37 +5,37 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import br.com.unicred.d4sign.client.enumeration.D4SignPathEnum;
-import br.com.unicred.d4sign.client.model.request.WebhookRequest;
-import br.com.unicred.d4sign.client.model.response.WebhookResponse;
+import br.com.unicred.d4sign.client.model.request.SignatoryRequest;
+import br.com.unicred.d4sign.client.model.response.SignatoryResponse;
 import br.com.unicred.rest.core.enumeration.APIClientParameterEnum;
 import br.com.unicred.rest.core.exception.APIClientException;
 import br.com.unicred.rest.core.exception.FacadeException;
 import br.com.unicred.rest.core.facade.APIClientFacade;
 
-public class WebhookFacade extends D4SignFacade {
+public class SignatoryFacade extends D4SignFacade {
 	
-	private static final Logger LOGGER = Logger.getLogger(WebhookFacade.class);
-
+	private static final Logger LOGGER = Logger.getLogger(DocumentFacade.class);
+	
 	private static final String HOST = D4SignPathEnum.HOST.getValue();
 	
-	private static final String APPLICATION_JSON = APIClientParameterEnum.APPLICATION_JSON.getValue();	
+	private static final String APPLICATION_JSON = APIClientParameterEnum.APPLICATION_JSON.getValue();
 
-	public WebhookFacade() {
+	public SignatoryFacade() {
 		super();
 	}
 	
-	public WebhookResponse createWebhook(WebhookRequest webhookRequest, String uuidDocument) throws FacadeException {
+	public SignatoryResponse createSignatoryList(SignatoryRequest signatoryRequest, String uuidDocument) throws FacadeException {
 		try {
 			Map<String, Object> parameters = getParameters();
-			String path = D4SignPathEnum.DOCUMENTS.getValue() + "/" + uuidDocument + "/webhooks";
+			String path = D4SignPathEnum.DOCUMENTS.getValue() + "/" + uuidDocument + "/createlist";
 			
 			APIClientFacade clientFacade = new APIClientFacade(HOST, path, APPLICATION_JSON);
-			WebhookResponse webhookResponse = (WebhookResponse) clientFacade.post(webhookRequest, parameters, WebhookResponse.class);			
-			return webhookResponse;
+			SignatoryResponse signatoryResponse = (SignatoryResponse) clientFacade.post(signatoryRequest, parameters, SignatoryResponse.class);			
+			return signatoryResponse;
 		} catch (APIClientException ex) {
 			LOGGER.error("Erro consumir o método createWebhook da API D4Sign. ", ex);
 			throw new FacadeException("Erro consumir o método createWebhook da API D4Sign. ");
 		}
 	}
-	
+
 }
