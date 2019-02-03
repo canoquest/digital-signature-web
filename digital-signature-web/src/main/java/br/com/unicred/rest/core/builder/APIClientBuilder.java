@@ -9,7 +9,7 @@ import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
-import br.com.unicred.rest.core.enumeration.APIParameterEnum;
+import br.com.unicred.rest.core.enumeration.APIClientParameterEnum;
 import br.com.unicred.rest.core.exception.APIClientException;
 import br.com.unicred.rest.core.util.DateUtil;
 
@@ -206,7 +206,7 @@ public class APIClientBuilder {
 
 			final Builder builder = webTarget.request(mediaType);
 
-			builder.header(APIParameterEnum.CONTENT_TYPE.getKey(), APIParameterEnum.CONTENT_TYPE.getValue());			
+			builder.header(APIClientParameterEnum.CONTENT_TYPE.getKey(), APIClientParameterEnum.CONTENT_TYPE.getValue());			
 
 			return builder;
 		} catch (final Exception ex) {

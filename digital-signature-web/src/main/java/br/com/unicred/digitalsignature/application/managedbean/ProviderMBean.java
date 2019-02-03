@@ -8,7 +8,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import br.com.unicred.api.client.service.APIService;
+import br.com.unicred.d4sign.client.service.D4SignService;
 import br.com.unicred.digitalsignature.application.enumeration.ProviderEnum;
 import br.com.unicred.digitalsignature.application.enumeration.UrlFinishedEnum;
 import br.com.unicred.digitalsignature.application.model.dto.UserDTO;
@@ -46,15 +46,16 @@ public class ProviderMBean extends CoreMBean implements Serializable {
 	}
 	
 	public void sendDocument(UserDTO userDTO) {
-		byte[] file = userDTO.getDocument().getContents();	
+		byte[] fileByteArray = userDTO.getDocument().getContents();	
 		String fileName = userDTO.getDocument().getFileName();		
-		String documentBase64 = new String(Base64.getEncoder().encode(file));
+		String fileBase64 = new String(Base64.getEncoder().encode(fileByteArray));
 		
 		if (provider != null && !provider.isEmpty()) {
 			if (provider.equals(ProviderEnum.DOCUSIGN.getValue())) {
 				
 			} else if (provider.equals(ProviderEnum.D4SIGN.getValue())) {
-				
+				D4SignService d4SignService = new D4SignService();
+				d4SignService.uploadFileBinary(fileBase64, fileByteArray, fileName);
 			} else if (provider.equals(ProviderEnum.AUTENTIQUE.getValue())) {
 				
 			} else if (provider.equals(ProviderEnum.ADOBESIGN.getValue())) {
@@ -62,10 +63,7 @@ public class ProviderMBean extends CoreMBean implements Serializable {
 			} else if (provider.equals(ProviderEnum.SIGNNOW.getValue())) {
 				
 			}
-		}
-		
-		APIService documentService = new APIService();		
-		documentService.sendDocument(documentBase64, file, fileName);
+		}		
 	}
 
 	public String getProvider() {

@@ -10,9 +10,9 @@ import br.com.unicred.rest.core.adapter.APIJsonAdapter;
 import br.com.unicred.rest.core.builder.APIClientBuilder;
 import br.com.unicred.rest.core.exception.APIClientException;
 
-public class ClientAPIFacade {
+public class APIClientFacade {
 	
-	private static final Logger LOGGER = Logger.getLogger(ClientAPIFacade.class);
+	private static final Logger LOGGER = Logger.getLogger(APIClientFacade.class);
 	
 	private String host;
 	
@@ -20,7 +20,7 @@ public class ClientAPIFacade {
 	
 	private String contentType;	
 	
-	public ClientAPIFacade(String host, String path, String contentType) {
+	public APIClientFacade(String host, String path, String contentType) {
 		super();
 		this.host = host;
 		this.path = path;

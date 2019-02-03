@@ -1,14 +1,16 @@
 package br.com.unicred.rest.core.enumeration;
 
-public enum APIParameterEnum {		
+public enum APIClientParameterEnum {		
 	
+	APPLICATION_JSON ("application/json", "application/json"),
+	MULTIPART_FORM_DATA ("multipart/form-data", "multipart/form-data"),
 	CONTENT_TYPE ("Content-Type", "application/json");
 	
 	private String key;
 	
 	private String value;
 
-	private APIParameterEnum(String key, String value) {
+	private APIClientParameterEnum(String key, String value) {
 		this.key = key;
 		this.value = value;
 	}

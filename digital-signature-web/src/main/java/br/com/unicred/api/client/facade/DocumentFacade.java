@@ -6,16 +6,16 @@ import java.util.Map;
 import br.com.unicred.api.client.enumeration.APIPathEnum;
 import br.com.unicred.api.client.model.request.DocumentRequest;
 import br.com.unicred.api.client.model.response.DocumentResponse;
-import br.com.unicred.rest.core.enumeration.ConfigureAPIEnum;
+import br.com.unicred.rest.core.enumeration.APIClientParameterEnum;
 import br.com.unicred.rest.core.exception.APIClientException;
 import br.com.unicred.rest.core.exception.FacadeException;
-import br.com.unicred.rest.core.facade.ClientAPIFacade;
+import br.com.unicred.rest.core.facade.APIClientFacade;
 
 public class DocumentFacade {
 	
 	private static final String HOST = APIPathEnum.HOST.getValue();
 	
-	private static final String APPLICATION_JSON = ConfigureAPIEnum.APPLICATION_JSON.getValue();
+	private static final String APPLICATION_JSON = APIClientParameterEnum.APPLICATION_JSON.getValue();
 
 	public DocumentFacade() {
 		super();		
@@ -26,7 +26,7 @@ public class DocumentFacade {
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			String path = APIPathEnum.SEND_DOCUMENT.getValue();
 			
-			ClientAPIFacade clientFacade = new ClientAPIFacade(HOST, path, APPLICATION_JSON);
+			APIClientFacade clientFacade = new APIClientFacade(HOST, path, APPLICATION_JSON);
 			DocumentResponse documentPathResponse = (DocumentResponse) clientFacade.post(documentRequest, parameters, DocumentResponse.class);			
 			return documentPathResponse;
 		} catch (APIClientException ex) {

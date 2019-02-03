@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import br.com.unicred.d4sign.client.enumeration.D4SignParameterEnum;
-import br.com.unicred.rest.core.enumeration.APIParameterEnum;
+import br.com.unicred.rest.core.enumeration.APIClientParameterEnum;
 
 public class D4SignParametersBuilder {
 	
@@ -16,7 +16,7 @@ public class D4SignParametersBuilder {
 	
 	private void configurationParameters() {	
 		createParameters();
-		parameters.put(APIParameterEnum.CONTENT_TYPE.getKey(), APIParameterEnum.CONTENT_TYPE.getValue());	
+		parameters.put(APIClientParameterEnum.CONTENT_TYPE.getKey(), APIClientParameterEnum.CONTENT_TYPE.getValue());	
 	}
 	
 	private void authenticationParameters() {
