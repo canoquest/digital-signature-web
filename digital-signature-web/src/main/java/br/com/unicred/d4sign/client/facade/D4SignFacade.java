@@ -10,9 +10,15 @@ public class D4SignFacade {
 		super();
 	}
 	
-	public Map<String, Object> getParameters() {		
+	public Map<String, Object> getQueryParameters() {		
 		D4SignParametersBuilder builder = new D4SignParametersBuilder();
-		Map<String, Object> parameters = builder.build();				 
+		Map<String, Object> parameters = builder.buildQueryParameters();				 
+		return parameters;
+	}
+	
+	public Map<String, Object> getHeaderParameters() {		
+		D4SignParametersBuilder builder = new D4SignParametersBuilder();
+		Map<String, Object> parameters = builder.buildHeaderParameters();				 
 		return parameters;
 	}
 

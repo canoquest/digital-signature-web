@@ -27,8 +27,8 @@ public class APIClientFacade {
 		this.contentType = contentType;		
 	}	
 	
-	public Object get(Map<String, Object> parameters, Class<?> classe) throws APIClientException {		
-		APIClientBuilder apiClientBuilder = new APIClientBuilder(host, path, contentType, parameters);		
+	public Object get(Map<String, Object> queryParameters, Map<String, Object> headParameters, Class<?> classe) throws APIClientException {		
+		APIClientBuilder apiClientBuilder = new APIClientBuilder(host, path, contentType, queryParameters, headParameters);		
 		
 		Response response = apiClientBuilder.get();
 		
@@ -38,13 +38,22 @@ public class APIClientFacade {
 		return objectResponse;
 	}
 	
-	public Object post(Object objectRequest, Map<String, Object> parameters, Class<?> classe) throws APIClientException {		
+	public Object post(Object objectRequest, Map<String, Object> queryParameters, Map<String, Object> headParameters, Class<?> classe) throws APIClientException {		
 		final String body = APIJsonAdapter
 				.adapterFromObjectToJson(objectRequest);
 		
+		return postProcess(body, queryParameters, headParameters, classe);
+	}
+	
+	public Object post(String body, Map<String, Object> queryParameters, Map<String, Object> headParameters, Class<?> classe) throws APIClientException {		
+		return postProcess(body, queryParameters, headParameters, classe);
+	}
+	
+	private Object postProcess(String body, Map<String, Object> queryParameters, Map<String, Object> headParameters, Class<?> classe) throws APIClientException {
 		LOGGER.info("JSON: " + body);	
+		System.out.println("Log: " + body);
 		
-		APIClientBuilder apiClientBuilder = new APIClientBuilder(host, path, contentType, parameters);		
+		APIClientBuilder apiClientBuilder = new APIClientBuilder(host, path, contentType, queryParameters, headParameters);		
 		
 		Response response = apiClientBuilder.post(body);		
 		

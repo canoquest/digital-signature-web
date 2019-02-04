@@ -7,9 +7,10 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MultivaluedHashMap;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
-import br.com.unicred.rest.core.enumeration.APIClientParameterEnum;
 import br.com.unicred.rest.core.exception.APIClientException;
 import br.com.unicred.rest.core.util.DateUtil;
 
@@ -29,36 +30,58 @@ public class APIClientBuilder {
 	private String path;
 	private String mediaType;
 	private String token;
-	private Map<String, Object> parameters;
+	private Map<String, Object> queryParameters;
+	private Map<String, Object> headerParameters;
 
 	/**
-	 * Construtor da classe WSConnectionBuilder.
+	 * Construtor da classe APIClientBuilder.
 	 * Todos os recursos da classes devem ser inicializados pelo construtor.
 	 *
 	 * @param host - Host da API de serviços
 	 * @param path - Resource da API de serviços que está sendo solicitado
 	 * @param mediaType - Mime Type da mensagem de retorno
 	 * @param token - Token de autorização para consumo do recurso solicitado
-	 * @param parameters - Parâmetros informados para a requisição
+	 * @param queryParameters - Parâmetros informados para a requisição (Query Param)
 	 */
 	public APIClientBuilder(final String host, final String path, final String mediaType,
-			final String token, final Map<String, Object> parameters) {
+			final String token, final Map<String, Object> queryParameters) {
 		super();
 		this.host = host;
 		this.path = path;
 		this.mediaType = mediaType;
 		this.token = token;
-		this.parameters = parameters;
+		this.queryParameters = queryParameters;
 	}
 	
+	
 	/**
-	 * Construtor da classe WSConnectionBuilder.
+	 * Construtor da classe APIClientBuilder.
+	 * Todos os recursos da classes devem ser inicializados pelo construtor.
+	 * 
+	 * @param host - Host da API de serviços
+	 * @param path - Resource da API de serviços que está sendo solicitado
+	 * @param mediaType - Mime Type da mensagem de retorno 
+	 * @param queryParameters - Parâmetros informados para a requisição (Query Param)
+	 * @param headerParameters - Parâmetros informados para a requisição (Head Param)
+	 */
+	public APIClientBuilder(String host, String path, String mediaType, Map<String, Object> queryParameters,
+			Map<String, Object> headerParameters) {
+		super();
+		this.host = host;
+		this.path = path;
+		this.mediaType = mediaType;
+		this.queryParameters = queryParameters;
+		this.headerParameters = headerParameters;
+	}
+
+	/**
+	 * Construtor da classe APIClientBuilder.
 	 * Todos os recursos da classes devem ser inicializados pelo construtor.
 	 *
 	 * @param host - Host da API de serviços
 	 * @param path - Resource da API de serviços que está sendo solicitado
 	 * @param mediaType - Mime Type da mensagem de retorno 
-	 * @param parameters - Parâmetros informados para a requisição
+	 * @param parameters - Parâmetros informados para a requisição (Query Param)
 	 */
 	public APIClientBuilder(final String host, final String path, final String mediaType,
 			final Map<String, Object> parameters) {
@@ -66,11 +89,11 @@ public class APIClientBuilder {
 		this.host = host;
 		this.path = path;
 		this.mediaType = mediaType;		
-		this.parameters = parameters;
+		this.queryParameters = parameters;
 	}
 
 	/**
-	 * Construtor da classe WSConnectionBuilder.
+	 * Construtor da classe APIClientBuilder.
 	 * Todos os recursos da classes, com exceção de parameters, devem
 	 * ser inicializados pelo construtor.
 	 *
@@ -89,7 +112,7 @@ public class APIClientBuilder {
 	}
 
 	/**
-	 * Construtor da classe WSConnectionBuilder.
+	 * Construtor da classe APIClientBuilder.
 	 * Todos os recursos da classes, com exceção do token e de parameters, devem ser
 	 * inicializados pelo construtor.
 	 *
@@ -181,9 +204,9 @@ public class APIClientBuilder {
 		try {
 			WebTarget webTarget = createWebTarget();
 
-			if (parameters != null && !parameters.isEmpty()) {
+			if (queryParameters != null && !queryParameters.isEmpty()) {
 
-				for (final Map.Entry<String, Object> parameter : parameters.entrySet()) {
+				for (final Map.Entry<String, Object> parameter : queryParameters.entrySet()) {
 
 					final String key = parameter.getKey();
 					final Object value = parameter.getValue();
@@ -206,12 +229,36 @@ public class APIClientBuilder {
 
 			final Builder builder = webTarget.request(mediaType);
 
-			builder.header(APIClientParameterEnum.CONTENT_TYPE.getKey(), APIClientParameterEnum.CONTENT_TYPE.getValue());			
+//			builder.header(APIClientParameterEnum.CONTENT_TYPE.getKey(), APIClientParameterEnum.CONTENT_TYPE.getValue());
+			
+			@SuppressWarnings("unchecked")
+			MultivaluedMap<String, Object> mapHeaderParameters = createHeader();
+			builder.headers(mapHeaderParameters);
 
 			return builder;
 		} catch (final Exception ex) {
 			throw new APIClientException(ex);
 		}
+	}
+	
+	@SuppressWarnings("rawtypes")
+	private MultivaluedMap createHeader() {
+		
+		MultivaluedMap<String, Object> mapHeaderParameters = new MultivaluedHashMap<String, Object>();
+		
+		if (headerParameters != null && !headerParameters.isEmpty()) {
+
+			for (final Map.Entry<String, Object> parameter : headerParameters.entrySet()) {
+
+				final String key = parameter.getKey();
+				final Object value = parameter.getValue();				
+				
+				mapHeaderParameters.putSingle(key, value);
+			}
+
+		}
+		
+		return mapHeaderParameters;
 	}
 
 	/**
@@ -330,21 +377,39 @@ public class APIClientBuilder {
 	}
 
 	/**
-	 * Retorna um Map de parâmetros informados na requisição.
+	 * Retorna um Map de parâmetros informados na requisição (Query Param).
 	 *
-	 * @return - Retorna um Map de parâmetros
+	 * @return - Retorna um Map de parâmetros (Query Param)
 	 */
-	public Map<String, Object> getParameters() {
-		return parameters;
+	public Map<String, Object> getQueryParameters() {
+		return queryParameters;
 	}
 
 	/**
-	 * Recebe um Map de parâmetros para serem utilizados na requisição
+	 * Recebe um Map de parâmetros para serem utilizados na requisição (Query Param). 
 	 *
-	 * @param parameters - Recebe um Map de parâmetros para serem utilizados na requisição
+	 * @param queryParameters - Recebe um Map de parâmetros para serem utilizados na requisição (Query Param).
 	 */
-	public void setParameters(final Map<String, Object> parameters) {
-		this.parameters = parameters;
+	public void setQueryParameters(Map<String, Object> queryParameters) {
+		this.queryParameters = queryParameters;
 	}
+	
+	/**
+	 * Retorna um Map de parâmetros informados na requisição (Head Param).
+	 *
+	 * @return - Retorna um Map de parâmetros (Head Param)
+	 */
+	public Map<String, Object> getHeaderParameters() {
+		return headerParameters;
+	}
+
+	/**
+	 * Recebe um Map de parâmetros para serem utilizados na requisição (Head Param). 
+	 *
+	 * @param queryParameters - Recebe um Map de parâmetros para serem utilizados na requisição (Head Param).
+	 */
+	public void setHeaderParameters(Map<String, Object> headerParameters) {
+		this.headerParameters = headerParameters;
+	}	
 
 }

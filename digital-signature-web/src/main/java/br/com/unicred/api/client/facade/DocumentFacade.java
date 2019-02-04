@@ -23,11 +23,12 @@ public class DocumentFacade {
 	
 	public DocumentResponse sendDocument(DocumentRequest documentRequest) throws FacadeException {
 		try {
-			Map<String, Object> parameters = new HashMap<String, Object>();
+			Map<String, Object> queryParameters = new HashMap<String, Object>();
+			Map<String, Object> headParameters = new HashMap<String, Object>();
 			String path = APIPathEnum.SEND_DOCUMENT.getValue();
 			
 			APIClientFacade clientFacade = new APIClientFacade(HOST, path, APPLICATION_JSON);
-			DocumentResponse documentPathResponse = (DocumentResponse) clientFacade.post(documentRequest, parameters, DocumentResponse.class);			
+			DocumentResponse documentPathResponse = (DocumentResponse) clientFacade.post(documentRequest, queryParameters, headParameters, DocumentResponse.class);			
 			return documentPathResponse;
 		} catch (APIClientException ex) {
 			throw new FacadeException("Erro consumir o método send da API de Documentos");

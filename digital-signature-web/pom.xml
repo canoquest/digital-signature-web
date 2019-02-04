@@ -19,17 +19,7 @@
         </repository>
     </repositories>
 	
-	<dependencies>	
-		 
-		<!-- 
-		<dependency>
-			<groupId>org.jboss.spec</groupId>
-			<artifactId>jboss-javaee-7.0</artifactId>
-			<version>1.1.1.Final</version>
-			<type>pom</type>
-			<scope>provided</scope>
-		</dependency>
-		 --> 
+	<dependencies>		
 		
 		<!-- Java EE Specification Dependencie -->
 		<dependency>
@@ -39,6 +29,7 @@
 			<scope>provided</scope>
 		</dependency>	
 		
+		<!-- RestEasy Dependencie -->
 		<dependency>
 		    <groupId>org.jboss.resteasy</groupId>
 		    <artifactId>resteasy-jaxrs</artifactId>
@@ -161,6 +152,20 @@
 		    <version>2.11.1</version>
 		</dependency>
 		<!-- End Log4J Dependencie -->
+		
+		<!-- Begin Jackson Dependencie -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.9.8</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.8</version>
+		</dependency>
+		<!-- End Jackson Dependencie -->
 		
 	</dependencies>
 

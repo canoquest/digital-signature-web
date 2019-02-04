@@ -33,11 +33,12 @@ public class DocumentFacade extends D4SignFacade {
 	
 	public DocumentPathResponse uploadFilePath(DocumentPathRequest documentPathRequest) throws FacadeException {
 		try {
-			Map<String, Object> parameters = getParameters();			
+			Map<String, Object> queryParameters = getQueryParameters();
+			Map<String, Object> headerParameters = getHeaderParameters();
 			String path = D4SignPathEnum.DOCUMENTS.getValue() + "/" + UUID_SAFE + "/upload";
 			
 			APIClientFacade clientFacade = new APIClientFacade(HOST, path, APPLICATION_JSON);
-			DocumentPathResponse documentPathResponse = (DocumentPathResponse) clientFacade.post(documentPathRequest, parameters, DocumentPathResponse.class);			
+			DocumentPathResponse documentPathResponse = (DocumentPathResponse) clientFacade.post(documentPathRequest, queryParameters, headerParameters, DocumentPathResponse.class);			
 			return documentPathResponse;
 		} catch (APIClientException ex) {
 			LOGGER.error("Erro consumir o método uploadFilePath da API D4Sign. ", ex);
@@ -47,11 +48,12 @@ public class DocumentFacade extends D4SignFacade {
 	
 	public DocumentBinaryResponse uploadFileBinary(DocumentBinaryRequest documentBinaryRequest) throws FacadeException {
 		try {
-			Map<String, Object> parameters = getParameters();
+			Map<String, Object> queryParameters = getQueryParameters();
+			Map<String, Object> headerParameters = getHeaderParameters();
 			String path = D4SignPathEnum.DOCUMENTS.getValue() + "/" + UUID_SAFE + "/uploadbinary";
 			
 			APIClientFacade clientFacade = new APIClientFacade(HOST, path, APPLICATION_JSON);
-			DocumentBinaryResponse documentBinaryResponse = (DocumentBinaryResponse) clientFacade.post(documentBinaryRequest, parameters, DocumentBinaryResponse.class);			
+			DocumentBinaryResponse documentBinaryResponse = (DocumentBinaryResponse) clientFacade.post(documentBinaryRequest, queryParameters, headerParameters, DocumentBinaryResponse.class);			
 			return documentBinaryResponse;
 		} catch (APIClientException ex) {
 			LOGGER.error("Erro consumir o método uploadFileBinary da API D4Sign. ", ex);
@@ -61,11 +63,12 @@ public class DocumentFacade extends D4SignFacade {
 	
 	public SendDocumentSignatureResponse sendToSigner(SendDocumentSignatureRequest documentSignatureRequest, String uuidDocument) throws FacadeException {
 		try {
-			Map<String, Object> parameters = getParameters();
+			Map<String, Object> queryParameters = getQueryParameters();
+			Map<String, Object> headerParameters = getHeaderParameters();
 			String path = D4SignPathEnum.DOCUMENTS.getValue() + "/" + uuidDocument + "/sendtosigner";
 			
 			APIClientFacade clientFacade = new APIClientFacade(HOST, path, APPLICATION_JSON);
-			SendDocumentSignatureResponse documentSignatureResponse = (SendDocumentSignatureResponse) clientFacade.post(documentSignatureRequest, parameters, SendDocumentSignatureResponse.class);			
+			SendDocumentSignatureResponse documentSignatureResponse = (SendDocumentSignatureResponse) clientFacade.post(documentSignatureRequest, queryParameters, headerParameters, SendDocumentSignatureResponse.class);			
 			return documentSignatureResponse;
 		} catch (APIClientException ex) {
 			LOGGER.error("Erro consumir o método sendtosigner da API D4Sign. ", ex);

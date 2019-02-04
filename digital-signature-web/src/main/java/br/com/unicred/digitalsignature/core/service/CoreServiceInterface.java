@@ -7,6 +7,6 @@ public interface CoreServiceInterface {
 	
 	public ProcessSignatureDTO processDocumentSignature(String fileBase64, byte[] fileByteArray, String fileName, String email);
 	
-	public DocumentUploadedDTO uploadFileBinary(String fileBase64, byte[] fileByteArray, String fileName, String email);
+	public DocumentUploadedDTO uploadDocument(String fileBase64, byte[] fileByteArray, String fileName, String email);
 
 }

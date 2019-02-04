@@ -22,6 +22,7 @@ import br.com.unicred.d4sign.client.model.response.WebhookResponse;
 import br.com.unicred.digitalsignature.core.model.dto.DocumentUploadedDTO;
 import br.com.unicred.digitalsignature.core.model.dto.ProcessSignatureDTO;
 import br.com.unicred.digitalsignature.core.service.CoreServiceInterface;
+import br.com.unicred.rest.core.enumeration.APIClientParameterEnum;
 import br.com.unicred.rest.core.exception.FacadeException;
 
 public class D4SignService implements CoreServiceInterface {	
@@ -34,7 +35,7 @@ public class D4SignService implements CoreServiceInterface {
 	
 	@Override
 	public ProcessSignatureDTO processDocumentSignature(String fileBase64, byte[] fileByteArray, String fileName, String email) {	
-		DocumentUploadedDTO  documentUploadedDTO = uploadFileBinary(fileBase64, fileByteArray, fileName, email);	
+		DocumentUploadedDTO  documentUploadedDTO = uploadDocument(fileBase64, fileByteArray, fileName, email);	
 		String idDocument = (documentUploadedDTO != null ? documentUploadedDTO.getIdDocument() : null);
 		
 		Boolean successWebHook = Boolean.FALSE;	
@@ -66,12 +67,12 @@ public class D4SignService implements CoreServiceInterface {
 	}
 
 	@Override
-	public DocumentUploadedDTO uploadFileBinary(String fileBase64, byte[] fileByteArray, String fileName, String email) {
+	public DocumentUploadedDTO uploadDocument(String fileBase64, byte[] fileByteArray, String fileName, String email) {
 		DocumentUploadedDTO documentUploadedDTO = null;		
 		try {
 			DocumentBinaryRequest documentRequest = new DocumentBinaryRequest();
 			documentRequest.setBase64_binary_file(fileBase64);
-			documentRequest.setMime_type(D4SignParameterEnum.APPLICATION_PDF.getValue());
+			documentRequest.setMime_type(APIClientParameterEnum.APPLICATION_PDF.getValue());
 			documentRequest.setName(fileName);
 			documentRequest.setUuid_folder(D4SignParameterEnum.UUID_FOLDER.getValue());
 			

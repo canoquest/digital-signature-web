@@ -12,6 +12,8 @@ public class DocumentUploadedDTO {
 	
 	private String urlWebViewProvider;
 	
+	private String tokenAssinatura;
+	
 	public DocumentUploadedDTO() {
 		super();
 	}
@@ -56,4 +58,12 @@ public class DocumentUploadedDTO {
 		this.urlWebViewProvider = urlWebViewProvider;
 	}
 
+	public String getTokenAssinatura() {
+		return tokenAssinatura;
+	}
+
+	public void setTokenAssinatura(String tokenAssinatura) {
+		this.tokenAssinatura = tokenAssinatura;
+	}
+	
 }

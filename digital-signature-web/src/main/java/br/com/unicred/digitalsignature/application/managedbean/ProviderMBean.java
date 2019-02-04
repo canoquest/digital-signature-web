@@ -8,6 +8,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import br.com.unicred.autentique.client.service.AutentiqueService;
 import br.com.unicred.d4sign.client.service.D4SignService;
 import br.com.unicred.digitalsignature.application.enumeration.ProviderEnum;
 import br.com.unicred.digitalsignature.application.enumeration.UrlFinishedEnum;
@@ -58,7 +59,8 @@ public class ProviderMBean extends CoreMBean implements Serializable {
 				D4SignService d4SignService = new D4SignService();
 				d4SignService.processDocumentSignature(fileBase64, fileByteArray, fileName, email);
 			} else if (provider.equals(ProviderEnum.AUTENTIQUE.getValue())) {
-				
+				AutentiqueService autentiqueService = new AutentiqueService();
+				autentiqueService.processDocumentSignature(fileBase64, fileByteArray, fileName, email);
 			} else if (provider.equals(ProviderEnum.ADOBESIGN.getValue())) {
 			
 			} else if (provider.equals(ProviderEnum.SIGNNOW.getValue())) {

@@ -8,38 +8,37 @@ import br.com.unicred.rest.core.enumeration.APIClientParameterEnum;
 
 public class D4SignParametersBuilder {
 	
-	protected Map<String, Object> parameters;
+	protected Map<String, Object> queryParameters;
+	
+	protected Map<String, Object> headerParameters;
 	
 	public D4SignParametersBuilder() {
-		super();
+		super();		
+		initializate();
+	}	
+	
+	private void initializate() {
+		queryParameters = new HashMap<String, Object>();
+		headerParameters = new HashMap<String, Object>();
 	}
 	
-	private void configurationParameters() {	
-		createParameters();
-		parameters.put(APIClientParameterEnum.CONTENT_TYPE.getKey(), APIClientParameterEnum.CONTENT_TYPE.getValue());	
+	private void createQueryParameters() {		
+		queryParameters.put(D4SignParameterEnum.TOKEN_API.getKey(), D4SignParameterEnum.TOKEN_API.getValue());
+		queryParameters.put(D4SignParameterEnum.CRYPT_KEY.getKey(), D4SignParameterEnum.CRYPT_KEY.getValue());		
+	}	
+	
+	private void createHeadParameters() {		
+		headerParameters.put(APIClientParameterEnum.CONTENT_TYPE.getKey(), APIClientParameterEnum.CONTENT_TYPE.getValue());				
 	}
 	
-	private void authenticationParameters() {
-		createParameters();
-		parameters.put(D4SignParameterEnum.TOKEN_API.getKey(), D4SignParameterEnum.TOKEN_API.getValue());
-		parameters.put(D4SignParameterEnum.CRYPT_KEY.getKey(), D4SignParameterEnum.CRYPT_KEY.getValue());		
+	public Map<String, Object> buildQueryParameters() {		
+		createQueryParameters();		
+		return queryParameters;
 	}
 	
-	private Boolean emptyParameters() {
-		Boolean result = (parameters == null || parameters.isEmpty() ? Boolean.TRUE : Boolean.FALSE);
-		return result;
-	}
-	
-	private void createParameters() {
-		if (emptyParameters()) {
-			parameters = new HashMap<String, Object>();
-		}		
-	}
-	
-	public Map<String, Object> build() {
-		configurationParameters();
-		authenticationParameters();
-		return parameters;
+	public Map<String, Object> buildHeaderParameters() {		
+		createHeadParameters();
+		return headerParameters;
 	}
 
 }
