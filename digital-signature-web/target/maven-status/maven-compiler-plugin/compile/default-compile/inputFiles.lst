@@ -9,7 +9,10 @@ C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-we
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\application\managedbean\DigitalSignatureProccessMBean.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\model\response\SendDocumentSignatureResponse.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\model\response\FolderResponse.java
+C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\signnow\client\model\response\DocumentUploadResponse.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\facade\WebhookFacade.java
+C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\signnow\client\service\SignNowService.java
+C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\signnow\client\model\request\DocumentUploadRequest.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\core\service\CoreServiceInterface.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\autentique\client\model\response\DocumentResponse.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\facade\D4SignFacade.java
@@ -23,6 +26,7 @@ C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-we
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\autentique\client\facade\DocumentFacade.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\facade\DocumentFacade.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\model\response\WebhookResponse.java
+C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\signnow\client\builder\SignNowParametersBuilder.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\autentique\client\enumeration\AutentiqueParameterEnum.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\api\client\model\request\DocumentRequest.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\docusign\client\service\AuthenticationService.java
@@ -38,7 +42,9 @@ C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-we
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\autentique\client\facade\AutentiqueFacade.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\builder\D4SignParametersBuilder.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\model\response\SignatoryResponse.java
+C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\signnow\client\facade\SignNowFacade.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\service\D4SignService.java
+C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\signnow\client\facade\DocumentFacade.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\rest\core\util\DateUtil.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\application\model\dto\SessionUserDTO.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\rest\core\exception\AdapterException.java
@@ -47,9 +53,11 @@ C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-we
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\model\request\DocumentBinaryRequest.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\application\enumeration\ApplicationEnum.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\autentique\client\model\response\AssinaturaResponse.java
+C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\signnow\client\model\response\DocumentResponse.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\application\enumeration\UrlFinishedEnum.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\core\exception\ApplicationException.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\application\model\dto\SignedDocumentDTO.java
+C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\signnow\client\enumeration\SignNowPathEnum.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\docusign\client\service\EmbeddedSigningService.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\rest\core\exception\FacadeException.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\core\model\dto\DocumentUploadedDTO.java
@@ -65,6 +73,7 @@ C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-we
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\rest\core\builder\APIClientBuilder2.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\application\enumeration\ProviderEnum.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\enumeration\D4SignPathEnum.java
+C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\signnow\client\model\response\DocumentoDetailResponse.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\rest\core\facade\APIClientFacade.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\rest\core\exception\APIClientException.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\model\response\BalanceResponse.java

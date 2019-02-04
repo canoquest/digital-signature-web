@@ -21,6 +21,7 @@ import br.com.unicred.digitalsignature.application.model.dto.SessionUserDTO;
 import br.com.unicred.digitalsignature.application.model.dto.UserDTO;
 import br.com.unicred.digitalsignature.core.managedbean.CoreMBean;
 import br.com.unicred.docusign.client.service.AuthenticationService;
+import br.com.unicred.signnow.client.service.SignNowService;
 
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "providerMBean")
@@ -70,7 +71,7 @@ public class ProviderMBean extends CoreMBean implements Serializable {
 			} else if (provider.equals(ProviderEnum.ADOBESIGN.getValue())) {
 				
 			} else if (provider.equals(ProviderEnum.SIGNNOW.getValue())) {
-				
+				url = providerSignNow(fileBase64, fileByteArray, fileName, email);
 			}
 		}	
 		return url;
@@ -85,6 +86,12 @@ public class ProviderMBean extends CoreMBean implements Serializable {
 	private String providerAutentique(String fileBase64, byte[] fileByteArray, String fileName, String email) {
 		AutentiqueService autentiqueService = new AutentiqueService();
 		autentiqueService.processDocumentSignature(fileBase64, fileByteArray, fileName, email);
+		return NavigationEnum.SIGNED_DOCUMENT_BY_USER.getValue();
+	}
+	
+	private String providerSignNow(String fileBase64, byte[] fileByteArray, String fileName, String email) {
+		SignNowService signNowService = new SignNowService();
+		signNowService.processDocumentSignature(fileBase64, fileByteArray, fileName, email);
 		return NavigationEnum.SIGNED_DOCUMENT_BY_USER.getValue();
 	}
 	
