@@ -5,6 +5,9 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/test"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <dependent-module archiveName="docusign-esign-java-2.8.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/docusign-esign-java/docusign-esign-java">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/digital-signature-web/target/classes"/>
         <property name="context-root" value="digital-signature-web"/>
     </wb-module>

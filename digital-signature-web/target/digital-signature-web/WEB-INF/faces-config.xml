@@ -45,6 +45,15 @@
 			<from-outcome>list_signed_documents</from-outcome>
 			<to-view-id>application/modules/documentSignature/signedDocumentList.xhtml</to-view-id>
 			<redirect/>
+		</navigation-case>
+		
+		<navigation-case>
+			<display-name>
+				Navegação para a tela de integração com o client DocuSign
+			</display-name>
+			<from-outcome>docusign</from-outcome>
+			<to-view-id>application/modules/provider/docusign.xhtml</to-view-id>
+			<redirect/>
 		</navigation-case>	
 			
 	</navigation-rule>	

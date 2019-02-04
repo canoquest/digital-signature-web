@@ -29,5 +29,32 @@ public abstract class CoreMBean {
 		}
 		return equalUrlFinished;
 	}
+	
+	public void setSessionAttribute(String key, Object value) {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		facesContext.getExternalContext().getSessionMap().put(key, value);	
+	}
+	
+	public Object getSessionAttribute(String key) {
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		
+		Object object = null;
+		if (facesContext != null
+				&& facesContext.getExternalContext().getSessionMap() != null
+				&& facesContext.getExternalContext().getSessionMap().get(key) != null) {
+			object = facesContext.getExternalContext().getSessionMap().get(key);
+		}
+		return object;
+	}
+	
+	public void removeSessionAttribute(String key) {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove(key);
+	}
+	
+	public Object getAndRemoveSessionAttribute(String key) {
+		Object object = getSessionAttribute(key);
+		removeSessionAttribute(key);
+		return object;
+	}
 
 }
