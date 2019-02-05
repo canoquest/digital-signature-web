@@ -21,13 +21,20 @@
 	
 	<dependencies>		
 		
-		<!-- Java EE Specification Dependencie -->
+		<!-- Java EE 8 Specification Dependencie -->
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>8.0</version>
 			<scope>provided</scope>
 		</dependency>	
+		
+		<!-- Java SE 8 Specification Dependencie -->
+		<dependency>
+		    <groupId>com.rudolfschmidt</groupId>
+		    <artifactId>javase8-essentials-archetype</artifactId>
+		    <version>2.0</version>
+		</dependency>
 		
 		<!-- RestEasy Dependencie -->
 		<dependency>
@@ -186,9 +193,8 @@
 					<warName>digital-signature-web</warName>							
 					<outputDirectory>C:\Dev-UBR\Server\JBoss\wildfly-14.0.0.Final\standalone\deployments</outputDirectory>													
 				</configuration>
-			</plugin>   
-			
-			<!-- 
+			</plugin>		
+			 
 			<plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
 	            <artifactId>maven-compiler-plugin</artifactId>
@@ -198,8 +204,7 @@
 	                <source>1.8</source>
 	                <target>1.8</target>
 	            </configuration>
-        	</plugin>
-        	 -->
+        	</plugin>        	
 		</plugins>
 	</build>
 

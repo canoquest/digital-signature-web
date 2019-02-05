@@ -8,12 +8,36 @@
 	<ui:define name="pageStyles">
 		<link rel="stylesheet" type="text/css" href="../../../application/styles/moduleStyle/documentSignatureStyle.css" />
 	</ui:define>
+	
+	<ui:define name="pageScripts">
+		<script type="text/javascript">
+		    //<![CDATA[
+			function start() {
+			    PF('statusDialog').show();
+			}
+			 
+			function stop() {
+			    PF('statusDialog').hide();
+			}
+		    //]]>
+		</script>    
+	</ui:define>
 
 	<ui:define name="pageContent">
 	
 		<h:form id="homeForm">
+		
+			<p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">
+			    <p:graphicImage name="/application/images/loading.gif" />
+			</p:dialog>
 			
 			<p:fieldset>
+			
+				<p:outputPanel layout="block" styleClass="line">				   
+				    <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);">
+				        <p:fileDownload value="#{documentMBean.streamedContent}" />
+				    </p:commandButton>				
+				</p:outputPanel>
 			
 				<p:outputPanel layout="block" styleClass="line">
 					<p:commandButton value="Novo" action="#{digitalSignatureProccessMBean.newDocument}" styleClass="buttonNew">

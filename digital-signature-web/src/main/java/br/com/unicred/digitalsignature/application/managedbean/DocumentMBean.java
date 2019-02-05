@@ -1,5 +1,6 @@
 package br.com.unicred.digitalsignature.application.managedbean;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,8 +9,12 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
+
 import br.com.unicred.digitalsignature.application.enumeration.UrlFinishedEnum;
 import br.com.unicred.digitalsignature.application.model.dto.SignedDocumentDTO;
+import br.com.unicred.digitalsignature.application.util.FileUtil;
 import br.com.unicred.digitalsignature.core.managedbean.CoreMBean;
 
 @SuppressWarnings("deprecation")
@@ -21,6 +26,8 @@ public class DocumentMBean extends CoreMBean implements Serializable {
 	
 	private List<SignedDocumentDTO> listSignedDocumentDTO;	
 	
+	private StreamedContent streamedContent;
+	
 	public DocumentMBean() {
 		super();
 	}
@@ -30,7 +37,8 @@ public class DocumentMBean extends CoreMBean implements Serializable {
 		Boolean loadSignedDocuments = currentUrlValidate(UrlFinishedEnum.SIGNED_DOCUMENT_LIST.getUrlFinished());
 		if (loadSignedDocuments) {
 			loadSignedDocuments();
-		}				
+		}		
+		getFile();
 	}
 	
 	private void loadSignedDocuments() {	
@@ -59,6 +67,12 @@ public class DocumentMBean extends CoreMBean implements Serializable {
 		document5.setSignatureDate(Calendar.getInstance().getTime());
 		listSignedDocumentDTO.add(document5);
 	}	
+	
+	private void getFile() {
+		String filePath = FileUtil.FILE_PATH_DESTINY + "\\0.384210768276638.pdf";
+		InputStream inputStream = FileUtil.getInputStream(filePath);
+		streamedContent = new DefaultStreamedContent(inputStream, "application/pdf", "0.384210768276638.pdf");
+	}
 
 	public List<SignedDocumentDTO> getListSignedDocumentDTO() {
 		return listSignedDocumentDTO;
@@ -67,7 +81,13 @@ public class DocumentMBean extends CoreMBean implements Serializable {
 	public void setListSignedDocumentDTO(List<SignedDocumentDTO> listSignedDocumentDTO) {
 		this.listSignedDocumentDTO = listSignedDocumentDTO;
 	}
-	
-	
+
+	public StreamedContent getStreamedContent() {
+		return streamedContent;
+	}
+
+	public void setStreamedContent(StreamedContent streamedContent) {
+		this.streamedContent = streamedContent;
+	}	
 
 }

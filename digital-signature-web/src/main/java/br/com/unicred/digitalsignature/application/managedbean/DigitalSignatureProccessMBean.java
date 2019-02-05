@@ -70,10 +70,16 @@ public class DigitalSignatureProccessMBean extends CoreMBean implements Serializ
 		LOGGER.info("Item Selecionado: " + providerMBean.getProvider());		
 	}
 	
-	public String newDocument() {
+	public String newDocument() {	
 		beginConversation();
+//		fileManagement();
 		return NavigationEnum.NEW_DOCUMENTO.getValue();
 	}
+	
+//	private void fileManagement() {
+//		byte[] fileByteArray = null;
+//		FileUtil.copyFileByteArray(fileByteArray, FileUtil.FILE_PATH_ORIGEN, FileUtil.FILE_PATH_DESTINY);
+//	}
 	
 	public String viewUserValues() {		
 		return NavigationEnum.VIEW_USER_VALUES.getValue();

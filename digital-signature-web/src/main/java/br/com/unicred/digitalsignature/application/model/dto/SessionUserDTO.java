@@ -11,6 +11,8 @@ public class SessionUserDTO {
 	private String userName;
 	
 	private String userEmail;
+	
+	private String providerSelected;
 
 	public SessionUserDTO() {
 		super();
@@ -54,6 +56,14 @@ public class SessionUserDTO {
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
-	}	
+	}
 
+	public String getProviderSelected() {
+		return providerSelected;
+	}
+
+	public void setProviderSelected(String providerSelected) {
+		this.providerSelected = providerSelected;
+	}
+	
 }

@@ -20,6 +20,8 @@ import br.com.unicred.digitalsignature.application.enumeration.UrlFinishedEnum;
 import br.com.unicred.digitalsignature.application.model.dto.SessionUserDTO;
 import br.com.unicred.digitalsignature.application.model.dto.UserDTO;
 import br.com.unicred.digitalsignature.core.managedbean.CoreMBean;
+import br.com.unicred.digitalsignature.core.model.dto.DocumentUploadedDTO;
+import br.com.unicred.digitalsignature.core.model.dto.ProcessSignatureDTO;
 import br.com.unicred.docusign.client.service.AuthenticationService;
 import br.com.unicred.signnow.client.service.SignNowService;
 
@@ -56,10 +58,10 @@ public class ProviderMBean extends CoreMBean implements Serializable {
 	
 	public String sendDocument(UserDTO userDTO) {
 		byte[] fileByteArray = userDTO.getDocument().getContents();	
-		String fileName = userDTO.getDocument().getFileName();		
+		String fileName = userDTO.getDocument().getFileName();
 		String fileBase64 = new String(Base64.getEncoder().encode(fileByteArray));
 		String email = "carlos.costa@zallpy.com";
-		String url = null;
+		String url = null;	
 		
 		if (provider != null && !provider.isEmpty()) {
 			if (provider.equals(ProviderEnum.DOCUSIGN.getValue())) {
@@ -79,7 +81,8 @@ public class ProviderMBean extends CoreMBean implements Serializable {
 	
 	private String providerD4Sign(String fileBase64, byte[] fileByteArray, String fileName, String email) {
 		D4SignService d4SignService = new D4SignService();
-		d4SignService.processDocumentSignature(fileBase64, fileByteArray, fileName, email);
+		ProcessSignatureDTO processSignatureDTO = d4SignService.processDocumentSignature(fileBase64, fileByteArray, fileName, email);
+		createUrlDocumentSession(processSignatureDTO);
 		return NavigationEnum.SIGNED_DOCUMENT_BY_USER.getValue();
 	}
 	
@@ -95,15 +98,8 @@ public class ProviderMBean extends CoreMBean implements Serializable {
 		return NavigationEnum.SIGNED_DOCUMENT_BY_USER.getValue();
 	}
 	
-	private void providerDocuSign(String fileBase64, byte[] fileByteArray, String fileName, String email) {		
-		SessionUserDTO sessionUserDTO = new SessionUserDTO();
-		sessionUserDTO.setFileName(fileName);
-		sessionUserDTO.setFileBase64(fileBase64);
-		sessionUserDTO.setFileByteArray(fileByteArray);
-		sessionUserDTO.setUserEmail(email);
-		sessionUserDTO.setUserName("");
-		
-		setSessionAttribute(ApplicationEnum.SESSION_USER.getValue(), sessionUserDTO);
+	private void providerDocuSign(String fileBase64, byte[] fileByteArray, String fileName, String email) {	
+		createUserSession(fileBase64, fileByteArray, fileName, email);
 		
 		AuthenticationService authenticationService = new AuthenticationService();
 		String url = authenticationService.configure();				 
@@ -113,6 +109,25 @@ public class ProviderMBean extends CoreMBean implements Serializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}	
+	
+	private void createUserSession(String fileBase64, byte[] fileByteArray, String fileName, String email) {
+		SessionUserDTO sessionUserDTO = new SessionUserDTO();
+		sessionUserDTO.setFileName(fileName);
+		sessionUserDTO.setFileBase64(fileBase64);
+		sessionUserDTO.setFileByteArray(fileByteArray);
+		sessionUserDTO.setUserEmail(email);
+		sessionUserDTO.setUserName("");
+		sessionUserDTO.setProviderSelected(provider);
+		
+		setSessionAttribute(ApplicationEnum.SESSION_USER.getValue(), sessionUserDTO);
+	}
+	
+	private void createUrlDocumentSession(ProcessSignatureDTO processSignatureDTO) {
+		if (processSignatureDTO != null && processSignatureDTO.getDocumentUploadedDTO() != null) {
+			DocumentUploadedDTO documentUploadedDTO = processSignatureDTO.getDocumentUploadedDTO();
+			setSessionAttribute(ApplicationEnum.URL_DOCUMENT.getValue(), documentUploadedDTO.getUrlDocument());
+		}		
 	}
 
 	public String getProvider() {

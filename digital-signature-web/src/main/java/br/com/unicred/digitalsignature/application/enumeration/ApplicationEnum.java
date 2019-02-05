@@ -2,7 +2,8 @@ package br.com.unicred.digitalsignature.application.enumeration;
 
 public enum ApplicationEnum {
 	
-	SESSION_USER ("session_user");
+	SESSION_USER ("session_user"),
+	URL_DOCUMENT ("url_document");
 	
 	private String value;
 

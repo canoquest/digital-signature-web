@@ -4,6 +4,8 @@ public class DocumentUploadedDTO {
 	
 	private String idDocument;
 	
+	private String urlDocument;
+	
 	private String message;
 	
 	private Boolean success;
@@ -24,6 +26,14 @@ public class DocumentUploadedDTO {
 
 	public void setIdDocument(String idDocument) {
 		this.idDocument = idDocument;
+	}
+
+	public String getUrlDocument() {
+		return urlDocument;
+	}
+
+	public void setUrlDocument(String urlDocument) {
+		this.urlDocument = urlDocument;
 	}
 
 	public String getMessage() {

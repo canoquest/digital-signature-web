@@ -6,7 +6,8 @@ public enum D4SignParameterEnum {
 	CRYPT_KEY ("cryptKey", "live_crypt_1dMHE8UVDn3zD8qjYRwFTKmjnSzi7bDe"),	
 	URL_WEB_HOOK ("urlWebHook", "http://localhost:8080/d4sign-web/application/modules/document/signatureResult.jsp"),
 	UUID_SAFE ("uuid_safe", "4e9798ee-7427-456a-aadf-0c9586842c01"),
-	UUID_FOLDER ("uuid_folder", "a9221d1d-425f-4e48-bedf-6eac4ce3983f");
+	UUID_FOLDER ("uuid_folder", "a9221d1d-425f-4e48-bedf-6eac4ce3983f"),
+	PDF ("PDF", "PDF");
 	
 	private String key;
 	

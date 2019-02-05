@@ -10,22 +10,24 @@ import br.com.unicred.d4sign.client.facade.DocumentFacade;
 import br.com.unicred.d4sign.client.facade.SignatoryFacade;
 import br.com.unicred.d4sign.client.facade.WebhookFacade;
 import br.com.unicred.d4sign.client.model.request.DocumentBinaryRequest;
+import br.com.unicred.d4sign.client.model.request.DocumentDownloadRequest;
 import br.com.unicred.d4sign.client.model.request.SendDocumentSignatureRequest;
 import br.com.unicred.d4sign.client.model.request.SignatoryRequest;
 import br.com.unicred.d4sign.client.model.request.SignerRequest;
 import br.com.unicred.d4sign.client.model.request.WebhookRequest;
 import br.com.unicred.d4sign.client.model.response.DocumentBinaryResponse;
+import br.com.unicred.d4sign.client.model.response.DocumentDownloadResponse;
 import br.com.unicred.d4sign.client.model.response.SendDocumentSignatureResponse;
 import br.com.unicred.d4sign.client.model.response.SignatoryResponse;
 import br.com.unicred.d4sign.client.model.response.SignerResponse;
 import br.com.unicred.d4sign.client.model.response.WebhookResponse;
 import br.com.unicred.digitalsignature.core.model.dto.DocumentUploadedDTO;
 import br.com.unicred.digitalsignature.core.model.dto.ProcessSignatureDTO;
-import br.com.unicred.digitalsignature.core.service.CoreServiceInterface;
+import br.com.unicred.digitalsignature.core.service.CoreService;
 import br.com.unicred.rest.core.enumeration.APIClientParameterEnum;
 import br.com.unicred.rest.core.exception.FacadeException;
 
-public class D4SignService implements CoreServiceInterface {	
+public class D4SignService extends CoreService {	
 	
 	private static final Logger LOGGER = Logger.getLogger(D4SignService.class);
 
@@ -55,13 +57,22 @@ public class D4SignService implements CoreServiceInterface {
 			documentSignatureSend = sendToSigner(idDocument);
 		}
 		
+		Boolean documentDownloaded = Boolean.FALSE;
+		String urlDocument = getDocumentForDownload(documentUploadedDTO.getIdDocument());
+		if (urlDocument != null && !urlDocument.isEmpty()) {
+			documentUploadedDTO.setUrlDocument(urlDocument);
+			documentDownloaded = Boolean.TRUE;
+		}
+		
 		ProcessSignatureDTO processSignatureDTO = new ProcessSignatureDTO();
 		processSignatureDTO.setDocumentUploadedDTO(documentUploadedDTO);
-		if (successDocument && successWebHook && successSignatory && documentSignatureSend) {
+		if (successDocument && successWebHook && successSignatory && documentSignatureSend && documentDownloaded) {
 			processSignatureDTO.setProccessResult(Boolean.TRUE);
 		} else {
 			processSignatureDTO.setProccessResult(Boolean.FALSE);
-		}
+		}	
+		
+		saveFileBase64(fileBase64, fileName, documentUploadedDTO.getIdDocument());
 		
 		return processSignatureDTO;
 	}
@@ -86,6 +97,21 @@ public class D4SignService implements CoreServiceInterface {
 			LOGGER.error("Erro ao enviar o documento. ", ex);
 		}
 		return documentUploadedDTO;
+	}	
+	
+	public String getDocumentForDownload(String idDocument) {		
+		String urlDocument = null;
+		try {
+			DocumentDownloadRequest documentDownloadRequest = new DocumentDownloadRequest();
+			documentDownloadRequest.setType(D4SignParameterEnum.PDF.getValue());
+			
+			DocumentFacade documentFacade = new DocumentFacade();
+			DocumentDownloadResponse documentDownloadResponse = documentFacade.getDocumentForDownload(documentDownloadRequest, idDocument);
+			urlDocument = documentDownloadResponse.getUrl();
+		} catch (FacadeException ex) {
+			LOGGER.error("Erro ao obter o documento: " + idDocument, ex);
+		}		
+		return urlDocument;
 	}
 	
 	private Boolean createWebHook(String idDocument) {
@@ -154,7 +180,7 @@ public class D4SignService implements CoreServiceInterface {
 	}
 	
 	private Boolean sendToSigner(String idDocument) {
-		Boolean successResult = Boolean.FALSE;
+		Boolean successResult = Boolean.TRUE;
 		String successMessage = "File sent to successfully signing";
 		try {
 			SendDocumentSignatureRequest documentSignatureRequest = new SendDocumentSignatureRequest();
@@ -175,6 +201,6 @@ public class D4SignService implements CoreServiceInterface {
 			LOGGER.error("Erro ao enviar o documento para a assinatura. ", ex);
 		}		
 		return successResult;
-	}
+	}	
 
 }
