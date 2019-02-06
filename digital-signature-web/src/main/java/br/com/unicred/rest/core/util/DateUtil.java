@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class DateUtil {
 
-	public static String format(final Date data, final String formato) {
+	public static String format(Date data, String formato) {
 
 		try {
 
@@ -15,7 +15,7 @@ public class DateUtil {
 
 			return formatted;
 
-		} catch (final Exception e) {
+		} catch (Exception e) {
 			return null;
 		}
 

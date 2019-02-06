@@ -4,6 +4,7 @@ public enum APIClientParameterEnum {
 	
 	APPLICATION_JSON ("application/json", "application/json"),
 	MULTIPART_FORM_DATA ("multipart/form-data", "multipart/form-data"),
+	APPLICATION_OCTET_STREAM_TYPE ("application/octet-stream", "application/octet-stream"),
 	APPLICATION_PDF ("application/pdf", "application/pdf"),
 	CONTENT_TYPE ("Content-Type", "application/json");
 	

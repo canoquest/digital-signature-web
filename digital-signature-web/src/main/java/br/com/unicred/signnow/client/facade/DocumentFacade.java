@@ -13,9 +13,9 @@ import br.com.unicred.rest.core.exception.FacadeException;
 import br.com.unicred.rest.core.facade.APIClientFacade;
 import br.com.unicred.signnow.client.enumeration.SignNowPathEnum;
 import br.com.unicred.signnow.client.model.request.DocumentUploadRequest;
+import br.com.unicred.signnow.client.model.response.DocumentDetailResponse;
 import br.com.unicred.signnow.client.model.response.DocumentResponse;
 import br.com.unicred.signnow.client.model.response.DocumentUploadResponse;
-import br.com.unicred.signnow.client.model.response.DocumentoDetailResponse;
 
 public class DocumentFacade extends SignNowFacade {
 	
@@ -23,7 +23,7 @@ public class DocumentFacade extends SignNowFacade {
 	
 	private static final String HOST = SignNowPathEnum.HOST.getValue();
 	
-	private static final String APPLICATION_JSON = APIClientParameterEnum.APPLICATION_JSON.getValue();	
+	private static final String APPLICATION_JSON = APIClientParameterEnum.APPLICATION_JSON.getValue();		
 
 	public DocumentFacade() {
 		super();
@@ -34,9 +34,10 @@ public class DocumentFacade extends SignNowFacade {
 			Map<String, Object> queryParameters = getQueryParameters();
 			Map<String, Object> headerParameters = getHeaderParameters();
 			String path = SignNowPathEnum.DOCUMENT.getValue(); 
+			Boolean converterToJSON = Boolean.FALSE;			
 			
 			APIClientFacade clientFacade = new APIClientFacade(HOST, path, APPLICATION_JSON);
-			DocumentUploadResponse documentUploadResponse = (DocumentUploadResponse) clientFacade.post(documentUploadRequest, queryParameters, headerParameters, DocumentUploadResponse.class);			
+			DocumentUploadResponse documentUploadResponse = (DocumentUploadResponse) clientFacade.post(documentUploadRequest, queryParameters, headerParameters, DocumentUploadResponse.class, converterToJSON);			
 			return documentUploadResponse;
 		} catch (APIClientException ex) {
 			LOGGER.error("Erro consumir o método uploadFilePath da API D4Sign. ", ex);
@@ -51,9 +52,9 @@ public class DocumentFacade extends SignNowFacade {
 			String path = SignNowPathEnum.DOCUMENTS.getValue();
 			
 			APIClientFacade clientFacade = new APIClientFacade(HOST, path, APPLICATION_JSON);
-			DocumentoDetailResponse[] arrayDocumentoDetailResponse = (DocumentoDetailResponse[]) clientFacade.get(queryParameters, headerParameters, DocumentoDetailResponse[].class);			
+			DocumentDetailResponse[] arrayDocumentoDetailResponse = (DocumentDetailResponse[]) clientFacade.get(queryParameters, headerParameters, DocumentDetailResponse[].class);			
 			
-			List<DocumentoDetailResponse> listDocumentoDetailResponse = new ArrayList<DocumentoDetailResponse>();
+			List<DocumentDetailResponse> listDocumentoDetailResponse = new ArrayList<DocumentDetailResponse>();
 			if (arrayDocumentoDetailResponse != null) {
 				for (Integer index = 0; index < arrayDocumentoDetailResponse.length; index++) {
 					listDocumentoDetailResponse.add(arrayDocumentoDetailResponse[index]);

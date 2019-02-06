@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MultivaluedHashMap;
@@ -43,8 +44,8 @@ public class APIClientBuilder {
 	 * @param token - Token de autorização para consumo do recurso solicitado
 	 * @param queryParameters - Parâmetros informados para a requisição (Query Param)
 	 */
-	public APIClientBuilder(final String host, final String path, final String mediaType,
-			final String token, final Map<String, Object> queryParameters) {
+	public APIClientBuilder(String host, String path, String mediaType,
+			String token, Map<String, Object> queryParameters) {
 		super();
 		this.host = host;
 		this.path = path;
@@ -83,8 +84,7 @@ public class APIClientBuilder {
 	 * @param mediaType - Mime Type da mensagem de retorno 
 	 * @param parameters - Parâmetros informados para a requisição (Query Param)
 	 */
-	public APIClientBuilder(final String host, final String path, final String mediaType,
-			final Map<String, Object> parameters) {
+	public APIClientBuilder(String host, String path, String mediaType, Map<String, Object> parameters) {
 		super();
 		this.host = host;
 		this.path = path;
@@ -102,8 +102,7 @@ public class APIClientBuilder {
 	 * @param mediaType - Mime Type da mensagem de retorno
 	 * @param token - Token de autorização para consumo do recurso solicitado
 	 */
-	public APIClientBuilder(final String host, final String path, final String mediaType,
-			final String token) {
+	public APIClientBuilder(String host, String path, String mediaType, String token) {
 		super();
 		this.host = host;
 		this.path = path;
@@ -120,7 +119,7 @@ public class APIClientBuilder {
 	 * @param path - Resource da API de serviços que está sendo solicitado
 	 * @param mediaType - Mime Type da mensagem de retorno
 	 */
-	public APIClientBuilder(final String host, final String path, final String mediaType) {
+	public APIClientBuilder(String host, String path, String mediaType) {
 		super();
 		this.host = host;
 		this.path = path;
@@ -141,7 +140,7 @@ public class APIClientBuilder {
 	public Response get() throws APIClientException {
 		try {
 			return createBuilder().get(Response.class);
-		}  catch (final Exception ex) {
+		}  catch (Exception ex) {
 			throw new APIClientException(ex.getMessage());
 		}
 	}
@@ -160,10 +159,30 @@ public class APIClientBuilder {
 	 * @throws APIClientException - Lança uma exceção do tipo
 	 * 						{@link br.com.unicred.FacadeException.base.exception.APIClientException}
 	 */
-	public Response post(final String json) throws APIClientException {
+	public Response post(String json) throws APIClientException {
 		try {
 			return createBuilder().post(Entity.entity(json, mediaType));
-		} catch (final Exception ex) {
+		} catch (Exception ex) {
+			throw new APIClientException(ex.getMessage());
+		}
+	}
+	
+	/**
+	 * Método da API {@link br.com.unicred.restwsclient.base.builder.WSConnectionBuilder}
+	 * responsável pelas requisições POST em serviços Rest.
+	 * Retorna um objeto do tipo {@link javax.ws.rs.core.Response},
+	 * contendo as informações do retorno da requisição POST.
+	 *
+	 * @param object - Objeto que encapsula as informações que serão enviadas para para o serviço.
+	 * @return - Retorna um objeto do tipo {@link javax.ws.rs.core.Response}, que encapsula informações
+	 * 					ao nível do proticilo HTTP.
+	 * @throws APIClientException - Lança uma exceção do tipo
+	 * 						{@link br.com.unicred.FacadeException.base.exception.APIClientException}
+	 */
+	public Response post(Object object) throws APIClientException {
+		try {
+			return createBuilder().post(Entity.entity(object, mediaType));
+		} catch (Exception ex) {
 			throw new APIClientException(ex.getMessage());
 		}
 	}
@@ -183,11 +202,11 @@ public class APIClientBuilder {
 	 * @throws APIClientException Lança uma exceção do tipo
 	 * 						{@link br.com.unicred.FacadeException.base.exception.APIClientException}
 	 */
-	public Response put(final String json)
+	public Response put(String json)
 			throws APIClientException {
 		try {
 			return createBuilder().put(Entity.entity(json, mediaType));
-		} catch (final Exception ex) {
+		} catch (Exception ex) {
 			throw new APIClientException(ex.getMessage());
 		}
 	}
@@ -206,16 +225,16 @@ public class APIClientBuilder {
 
 			if (queryParameters != null && !queryParameters.isEmpty()) {
 
-				for (final Map.Entry<String, Object> parameter : queryParameters.entrySet()) {
+				for (Map.Entry<String, Object> parameter : queryParameters.entrySet()) {
 
-					final String key = parameter.getKey();
-					final Object value = parameter.getValue();
+					String key = parameter.getKey();
+					Object value = parameter.getValue();
 
 					if (value != null && value instanceof Date) {
 
-						final Date valueAsDate = (Date) value;
+						Date valueAsDate = (Date) value;
 
-						final String formattedDateParameter = formatDateParameter(valueAsDate);
+						String formattedDateParameter = formatDateParameter(valueAsDate);
 						webTarget = webTarget.queryParam(key, formattedDateParameter != null ? formattedDateParameter : value);
 
 						continue;
@@ -227,16 +246,15 @@ public class APIClientBuilder {
 
 			}
 
-			final Builder builder = webTarget.request(mediaType);
-
-//			builder.header(APIClientParameterEnum.CONTENT_TYPE.getKey(), APIClientParameterEnum.CONTENT_TYPE.getValue());
+//			Builder builder = webTarget.request(mediaType);
+			Invocation.Builder builder = webTarget.request(mediaType);
 			
 			@SuppressWarnings("unchecked")
 			MultivaluedMap<String, Object> mapHeaderParameters = createHeader();
 			builder.headers(mapHeaderParameters);
 
 			return builder;
-		} catch (final Exception ex) {
+		} catch (Exception ex) {
 			throw new APIClientException(ex);
 		}
 	}
@@ -248,10 +266,10 @@ public class APIClientBuilder {
 		
 		if (headerParameters != null && !headerParameters.isEmpty()) {
 
-			for (final Map.Entry<String, Object> parameter : headerParameters.entrySet()) {
+			for (Map.Entry<String, Object> parameter : headerParameters.entrySet()) {
 
-				final String key = parameter.getKey();
-				final Object value = parameter.getValue();				
+				String key = parameter.getKey();
+				Object value = parameter.getValue();				
 				
 				mapHeaderParameters.putSingle(key, value);
 			}
@@ -267,7 +285,7 @@ public class APIClientBuilder {
 	 * @param dateParam Parâmetor GET que irá na URL da chamada do serviço;
 	 * @return data formatada.
 	 */
-	private String formatDateParameter(final Date dateParam) {
+	private String formatDateParameter(Date dateParam) {
 
 		return DateUtil.format(dateParam, DEFAULT_DATE_PARAM_PATTERN);
 
@@ -289,7 +307,7 @@ public class APIClientBuilder {
 			return ClientBuilder.newClient()
 					.target(host)
 			        .path(path);
-		} catch (final Exception ex) {
+		} catch (Exception ex) {
 			throw new APIClientException(ex.getMessage());
 		}
 	}
@@ -308,7 +326,7 @@ public class APIClientBuilder {
 	 *
 	 * @param host - Recebe o Host da API de serviços
 	 */
-	public void setHost(final String host) {
+	public void setHost(String host) {
 		this.host = host;
 	}
 
@@ -326,7 +344,7 @@ public class APIClientBuilder {
 	 *
 	 * @param path - Define o Resource que deve ser solicitado
 	 */
-	public void setPath(final String path) {
+	public void setPath(String path) {
 		this.path = path;
 	}
 
@@ -352,7 +370,7 @@ public class APIClientBuilder {
 	 *
 	 * @param mediaType - Recebe o Mime Type da mensagem de retorno
 	 */
-	public void setMediaType(final String mediaType) {
+	public void setMediaType(String mediaType) {
 		this.mediaType = mediaType;
 	}
 
@@ -372,7 +390,7 @@ public class APIClientBuilder {
 	 * @param token - Recebe o Token de autorização para a solicitação dos Resources
 	 * 			 da API de serviços
 	 */
-	public void setToken(final String token) {
+	public void setToken(String token) {
 		this.token = token;
 	}
 

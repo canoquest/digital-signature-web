@@ -18,6 +18,7 @@ C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-we
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\autentique\client\model\response\DocumentResponse.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\facade\D4SignFacade.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\model\request\WebhookRequest.java
+C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\signnow\client\model\response\DocumentDetailResponse.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\rest\core\enumeration\APIClientParameterEnum.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\facade\SignatoryFacade.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\core\exception\ViewValidationException.java
@@ -78,7 +79,6 @@ C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-we
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\rest\core\builder\APIClientBuilder2.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\digitalsignature\application\enumeration\ProviderEnum.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\enumeration\D4SignPathEnum.java
-C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\signnow\client\model\response\DocumentoDetailResponse.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\rest\core\facade\APIClientFacade.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\rest\core\exception\APIClientException.java
 C:\Dev-UBR\Git\AssDigital\Development\digital-signature-web\digital-signature-web\src\main\java\br\com\unicred\d4sign\client\model\response\BalanceResponse.java

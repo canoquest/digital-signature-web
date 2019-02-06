@@ -38,11 +38,17 @@ public class APIClientFacade {
 		return objectResponse;
 	}
 	
-	public Object post(Object objectRequest, Map<String, Object> queryParameters, Map<String, Object> headParameters, Class<?> classe) throws APIClientException {		
-		final String body = APIJsonAdapter
-				.adapterFromObjectToJson(objectRequest);
-		
-		return postProcess(body, queryParameters, headParameters, classe);
+	public Object post(Object objectRequest, Map<String, Object> queryParameters, Map<String, Object> headParameters, Class<?> classe, Boolean converterToJSON) throws APIClientException {		
+		Object objectResponse = new Object();
+		if (converterToJSON != null) {
+			if (converterToJSON) {
+				String body = APIJsonAdapter.adapterFromObjectToJson(objectRequest);				
+				objectResponse = postProcess(body, queryParameters, headParameters, classe);
+			} else {
+				objectResponse = postProcess(objectRequest, queryParameters, headParameters, classe);
+			}
+		}
+		return objectResponse;		
 	}
 	
 	public Object post(String body, Map<String, Object> queryParameters, Map<String, Object> headParameters, Class<?> classe) throws APIClientException {		
@@ -50,12 +56,22 @@ public class APIClientFacade {
 	}
 	
 	private Object postProcess(String body, Map<String, Object> queryParameters, Map<String, Object> headParameters, Class<?> classe) throws APIClientException {
-		LOGGER.info("JSON: " + body);	
-		System.out.println("Log: " + body);
+		LOGGER.info("JSON: " + body);		
 		
 		APIClientBuilder apiClientBuilder = new APIClientBuilder(host, path, contentType, queryParameters, headParameters);		
 		
 		Response response = apiClientBuilder.post(body);		
+		
+		String json = APIJsonAdapter.adapterToJSON(response);
+		
+		Object objectResponse = APIJsonAdapter.adapterToObject(json, classe);				
+		return objectResponse;
+	}
+	
+	private Object postProcess(Object objectRequest, Map<String, Object> queryParameters, Map<String, Object> headParameters, Class<?> classe) throws APIClientException {
+		APIClientBuilder apiClientBuilder = new APIClientBuilder(host, path, contentType, queryParameters, headParameters);		
+		
+		Response response = apiClientBuilder.post(objectRequest);		
 		
 		String json = APIJsonAdapter.adapterToJSON(response);
 		

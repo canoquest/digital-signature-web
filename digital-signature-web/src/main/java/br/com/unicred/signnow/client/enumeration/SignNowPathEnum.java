@@ -2,7 +2,7 @@ package br.com.unicred.signnow.client.enumeration;
 
 public enum SignNowPathEnum {
 	
-	HOST ("localhost:8080"),	
+	HOST ("http://localhost:8080"),	
 	DOCUMENT ("/document"),
 	DOCUMENTS ("/documents");
 	

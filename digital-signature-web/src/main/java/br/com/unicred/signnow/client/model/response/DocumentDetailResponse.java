@@ -1,6 +1,6 @@
 package br.com.unicred.signnow.client.model.response;
 
-public class DocumentoDetailResponse {
+public class DocumentDetailResponse {
 	
 	private String uuid;
 	
@@ -10,7 +10,7 @@ public class DocumentoDetailResponse {
 	
 	private String creationDate;
 
-	public DocumentoDetailResponse() {
+	public DocumentDetailResponse() {
 		super();
 	}
 

@@ -25,12 +25,12 @@ public class JSONAdapter {
 	 * @throws JSONAdapterException - Lança uma exceção do tipo
 	 * 				{@link br.com.unicred.restwsclient.exception.JSONAdapterException}
 	 */
-	public static Object adapterToObject(final String json, final Class<?> classe)
+	public static Object adapterToObject(String json, Class<?> classe)
 			throws JSONAdapterException {
 		try {
-			final Gson gson = createGson();			
+			Gson gson = createGson();			
 			return gson.fromJson(json, classe);
-		} catch (final Exception ex) {
+		} catch (Exception ex) {
 			throw new JSONAdapterException(ex);
 		}
 	}
@@ -43,12 +43,12 @@ public class JSONAdapter {
 	 * @throws JSONAdapterException - Lança uma exceção do tipo
 	 * {@link br.com.unicred.restwsclient.exception.JSONAdapterException}
 	 */
-	public static String adapterToJSON(final Object object)
+	public static String adapterToJSON(Object object)
 			throws JSONAdapterException {
 		try {
-			final Gson gson = createGson();
+			Gson gson = createGson();
 			return gson.toJson(object);
-		} catch (final Exception ex) {
+		} catch (Exception ex) {
 			throw new JSONAdapterException(ex);
 		}
 	}
@@ -63,13 +63,13 @@ public class JSONAdapter {
 	 */
 	private static Gson createGson() throws JSONAdapterException {
 		try {
-			final GsonBuilder gsonBuilder = new GsonBuilder();
+			GsonBuilder gsonBuilder = new GsonBuilder();
 
 			gsonBuilder.registerTypeHierarchyAdapter(byte[].class, new ByteArrayToBase64TypeAdapter());
 			gsonBuilder.serializeNulls();
-			final GsonBuilder dateFormatSetup = gsonBuilder.setDateFormat(FORMATO_DATA_PADRAO);
+			GsonBuilder dateFormatSetup = gsonBuilder.setDateFormat(FORMATO_DATA_PADRAO);
 			return dateFormatSetup.create();
-		} catch (final Exception ex) {
+		} catch (Exception ex) {
 			throw new JSONAdapterException(ex);
 		}
 	}

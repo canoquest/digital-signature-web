@@ -32,8 +32,8 @@ public class AdapterException extends Exception implements Serializable {
 	 * @param enableSuppression - Flag da super classe {@link java.lang.Exception}
 	 * @param writableStackTrace - Flag da super classe {@link java.lang.Exception}
 	 */
-	public AdapterException(final String message, final Throwable cause, final boolean enableSuppression,
-			final boolean writableStackTrace) {
+	public AdapterException(String message, Throwable cause, boolean enableSuppression,
+			boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 		addMessage(message);
 	}
@@ -44,7 +44,7 @@ public class AdapterException extends Exception implements Serializable {
 	 * @param message - Mensagem de exceção lançada
 	 * @param cause - Motivo que ocasionou a exceção
 	 */
-	public AdapterException(final String message, final Throwable cause) {
+	public AdapterException(String message, Throwable cause) {
 		super(message, cause);
 		addMessage(message);
 		this.message = message;
@@ -56,7 +56,7 @@ public class AdapterException extends Exception implements Serializable {
 	 *
 	 * @param message - Mensagem de exceção lançada
 	 */
-	public AdapterException(final String message) {
+	public AdapterException(String message) {
 		super(message);
 		addMessage(message);
 		this.message = message;
@@ -67,7 +67,7 @@ public class AdapterException extends Exception implements Serializable {
 	 *
 	 * @param cause - Motivo que ocasionou a exceção
 	 */
-	public AdapterException(final Throwable cause) {
+	public AdapterException(Throwable cause) {
 		super(cause);
 		this.cause = cause;
 	}
@@ -106,7 +106,7 @@ public class AdapterException extends Exception implements Serializable {
 	 *
 	 * @param message - Mensagem de exceção lançada
 	 */
-	protected void addMessage(final String message) {
+	protected void addMessage(String message) {
 		if (listMessages == null) {
 			listMessages = new ArrayList<String>();
 		}

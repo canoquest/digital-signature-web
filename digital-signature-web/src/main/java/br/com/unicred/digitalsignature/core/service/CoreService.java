@@ -13,13 +13,13 @@ public abstract class CoreService {
 	
 	public void saveFileBase64(String fileBase64, String fileName, String idDocument) {
 		String newFileName = StringUtil.updateFileName(fileName, idDocument);
-		String filePath = FileUtil.FILE_PATH_DESTINY + "\\" + newFileName;
+		String filePath = FileUtil.FILE_PATH_DESTINY + newFileName;
 		FileUtil.saveFileBase64(fileBase64, filePath);
 	}
 	
 	public void saveFileByteArray(byte[] fileByteArray, String fileName, String idDocument) {
 		String newFileName = StringUtil.updateFileName(fileName, idDocument);
-		String filePath = FileUtil.FILE_PATH_DESTINY + "\\" + newFileName;
+		String filePath = FileUtil.FILE_PATH_DESTINY + newFileName;
 		FileUtil.saveFileByteArray(fileByteArray, filePath);
 	}
 	

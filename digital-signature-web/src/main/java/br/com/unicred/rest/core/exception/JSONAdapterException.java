@@ -19,8 +19,8 @@ public class JSONAdapterException extends APIClientException {
 	 * @param enableSuppression - Flag da super classe {@link java.lang.Exception}
 	 * @param writableStackTrace - Flag da super classe {@link java.lang.Exception}
 	 */
-	public JSONAdapterException(final String message, final Throwable cause,
-			final boolean enableSuppression, final boolean writableStackTrace) {
+	public JSONAdapterException(String message, Throwable cause,
+			boolean enableSuppression, boolean writableStackTrace) {
 		super(message, cause, enableSuppression, writableStackTrace);
 	}
 
@@ -30,7 +30,7 @@ public class JSONAdapterException extends APIClientException {
 	 * @param message - Mensagem de exceção lançada
 	 * @param cause - Motivo que ocasionou a exceção
 	 */
-	public JSONAdapterException(final String message, final Throwable cause) {
+	public JSONAdapterException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
@@ -39,7 +39,7 @@ public class JSONAdapterException extends APIClientException {
 	 *
 	 * @param message - Mensagem de exceção lançada
 	 */
-	public JSONAdapterException(final String message) {
+	public JSONAdapterException(String message) {
 		super(message);
 	}
 
@@ -48,7 +48,7 @@ public class JSONAdapterException extends APIClientException {
 	 *
 	 * @param cause - Motivo que ocasionou a exceção
 	 */
-	public JSONAdapterException(final Throwable cause) {
+	public JSONAdapterException(Throwable cause) {
 		super(cause);
 	}
 	

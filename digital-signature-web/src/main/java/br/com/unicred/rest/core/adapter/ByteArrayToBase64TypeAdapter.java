@@ -16,18 +16,18 @@ import com.google.gson.JsonSerializer;
 /**
  * Adapter para serializar e deserializar array de bytes em JSON dos serviços Rest.
  *
- * @author rodrigo.prates
+ * @author carlos.costa
  */
 public class ByteArrayToBase64TypeAdapter implements JsonSerializer<byte[]>, JsonDeserializer<byte[]> {
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public byte[] deserialize(final JsonElement json, final Type typeOfT,
-			final JsonDeserializationContext context) {
+	public byte[] deserialize(JsonElement json, Type typeOfT,
+			JsonDeserializationContext context) {
 		try {	
 			return Base64.decode(json.getAsString());
-		} catch (final Exception e) {
+		} catch (Exception e) {
 			throw new JsonParseException("Problemas ao deserializar array de bytes.", e);
 		}
 	}
@@ -35,11 +35,11 @@ public class ByteArrayToBase64TypeAdapter implements JsonSerializer<byte[]>, Jso
 	/**
 	 * {@inheritDoc}
 	 */
-	public JsonElement serialize(final byte[] fileBytes, final Type paramType,
-			final JsonSerializationContext paramJsonSerializationContext) {
+	public JsonElement serialize(byte[] fileBytes, Type paramType,
+			JsonSerializationContext paramJsonSerializationContext) {
 		try {
 			return new JsonPrimitive(Base64.encodeBytes(fileBytes, Base64.ENCODE));
-		} catch (final IOException e) {
+		} catch (IOException e) {
 			throw new JsonParseException("Problemas ao serializar array de bytes.", e);
 		}
 	}

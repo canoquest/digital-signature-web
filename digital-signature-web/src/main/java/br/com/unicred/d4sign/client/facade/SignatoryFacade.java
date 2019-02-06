@@ -29,9 +29,10 @@ public class SignatoryFacade extends D4SignFacade {
 			Map<String, Object> queryParameters = getQueryParameters();
 			Map<String, Object> headerParameters = getHeaderParameters();
 			String path = D4SignPathEnum.DOCUMENTS.getValue() + "/" + uuidDocument + "/createlist";
+			Boolean converterToJSON = Boolean.TRUE;
 			
 			APIClientFacade clientFacade = new APIClientFacade(HOST, path, APPLICATION_JSON);
-			SignatoryResponse signatoryResponse = (SignatoryResponse) clientFacade.post(signatoryRequest, queryParameters, headerParameters, SignatoryResponse.class);			
+			SignatoryResponse signatoryResponse = (SignatoryResponse) clientFacade.post(signatoryRequest, queryParameters, headerParameters, SignatoryResponse.class, converterToJSON);			
 			return signatoryResponse;
 		} catch (APIClientException ex) {
 			LOGGER.error("Erro consumir o método createWebhook da API D4Sign. ", ex);

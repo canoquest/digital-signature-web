@@ -19,12 +19,12 @@ public class APIJsonAdapter {
 	 * @throws JSONAdapterException - Lança uma exceção do tipo
 	 * 				{@link br.com.unicred.restwsclient.exception.JSONAdapterException}
 	 */
-	public static final Object adapterFromJsonToObject(final Response response, final Class<?> classe)
+	public static final Object adapterFromJsonToObject(Response response, Class<?> classe)
 			throws JSONAdapterException {
 		try {
-			final String json = adapterToJSON(response);
+			String json = adapterToJSON(response);
 			return adapterToObject(json, classe);
-		} catch (final JSONAdapterException ex) {
+		} catch (JSONAdapterException ex) {
 			throw new JSONAdapterException(ex.getMessage());
 		}
 	}
@@ -37,11 +37,11 @@ public class APIJsonAdapter {
 	 * @throws JSONAdapterException - Lança uma exceção do tipo
 	 * 				{@link br.com.unicred.restwsclient.exception.JSONAdapterException}
 	 */
-	public static final String adapterFromObjectToJson(final Object object)
+	public static final String adapterFromObjectToJson(Object object)
 			throws JSONAdapterException {
 		try {
 			return JSONAdapter.adapterToJSON(object);
-		} catch (final Exception ex) {
+		} catch (Exception ex) {
 			throw new JSONAdapterException(ex.getMessage());
 		}
 	}
@@ -56,11 +56,11 @@ public class APIJsonAdapter {
 	 * @throws JSONAdapterException - Lança uma exceção do tipo
 	 * 				{@link br.com.unicred.restwsclient.exception.JSONAdapterException}
 	 */
-	public static String adapterToJSON(final Response response)
+	public static String adapterToJSON(Response response)
 			throws JSONAdapterException {
 		try {
 			return response.readEntity(String.class);
-		} catch (final Exception ex) {
+		} catch (Exception ex) {
 			throw new JSONAdapterException(ex.getMessage());
 		}
 	}
@@ -75,14 +75,13 @@ public class APIJsonAdapter {
 	 * @throws JSONAdapterException - Lança uma exceção do tipo
 	 * 				{@link br.com.unicred.restwsclient.exception.JSONAdapterException}
 	 */
-	public static Object adapterToObject(final String json, final Class<?> classe)
+	public static Object adapterToObject(String json, Class<?> classe)
 			throws JSONAdapterException {
 		try {
 			return JSONAdapter.adapterToObject(json, classe);
-		} catch (final Exception ex) {
+		} catch (Exception ex) {
 			throw new JSONAdapterException(ex);
 		}
 	}
-
 		
 }

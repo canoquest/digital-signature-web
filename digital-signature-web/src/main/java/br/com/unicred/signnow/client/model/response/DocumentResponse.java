@@ -4,17 +4,17 @@ import java.util.List;
 
 public class DocumentResponse {
 	
-	private List<DocumentoDetailResponse> listDocumentDetailResponse;
+	private List<DocumentDetailResponse> listDocumentDetailResponse;
 
 	public DocumentResponse() {
 		super();
 	}
 
-	public List<DocumentoDetailResponse> getListDocumentDetailResponse() {
+	public List<DocumentDetailResponse> getListDocumentDetailResponse() {
 		return listDocumentDetailResponse;
 	}
 
-	public void setListDocumentDetailResponse(List<DocumentoDetailResponse> listDocumentDetailResponse) {
+	public void setListDocumentDetailResponse(List<DocumentDetailResponse> listDocumentDetailResponse) {
 		this.listDocumentDetailResponse = listDocumentDetailResponse;
 	}	
 
