@@ -7,7 +7,7 @@ import br.com.unicred.d4sign.client.builder.D4SignParametersBuilder;
 public class D4SignFacade {
 	
 	public D4SignFacade() {
-		super();
+		super();      
 	}
 	
 	public Map<String, Object> getQueryParameters() {		
